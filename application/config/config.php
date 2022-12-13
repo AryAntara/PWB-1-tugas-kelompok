@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://1852-114-122-133-5.ap.ngrok.io/Pr_ecommerce/';
+$config['base_url'] = 'http://localhost/Pr_ecommerce/';
 /*
 |--------------------------------------------------------------------------
 | Index File

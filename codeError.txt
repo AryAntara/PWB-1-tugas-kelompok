@@ -1,0 +1,11 @@
+ERROR : 
+101 : fields kosong 
+102 : email sudah digunakan
+103 : username sudah di gunakan
+104 : username salah 
+105 : password salaha 
+
+SUCCESS: 
+200 : success register user
+201 : success login user
+202 : ...
