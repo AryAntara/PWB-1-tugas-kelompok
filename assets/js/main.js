@@ -62,7 +62,7 @@ function toggleEye(){
  * @param el string, element to fill
  */
 function setBg(name,el){
-  $(el).css('background-image',`url(${url}assets/img/${name})`)
+  $(el).css('background-image',`url(${url}assets/img/${name}) no-repeat center top`)
 }
 
 /**
