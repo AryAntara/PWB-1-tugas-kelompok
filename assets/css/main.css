@@ -4,6 +4,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1 {
   font-weight: 700;
 }

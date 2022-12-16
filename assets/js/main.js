@@ -8,7 +8,7 @@ $(document).ready(async function(){
   toggleEye()
 
   // set background
-  setBg('topi.png','body')
+  setBg('handuk.png','body')
 
   // register user
   createUser()
@@ -18,6 +18,19 @@ $(document).ready(async function(){
 
   // navbar control 
   navbar()
+
+  // set bg white if route in home
+  onRouteSet('/',function(){
+    setBg('','body')
+    $('body').addClass('bg-light')
+  })
+
+  onRouteSet('user',function(){
+    setBg('handuk.png','body')
+    $('body').remove('bg-light')
+  })
+
+
 })
 
 /** 
@@ -421,7 +434,25 @@ function sleep(i){
   })
 }
 
-
+/**
+ *
+ * if this route mathe with routeName do something 
+ *
+ * @param routeName string, indinticate router name to be match 
+ * @param callback function, something to do if route match
+ */
+function onRouteSet(routeName, callback){
+  let router = window.location.href.split(url)[1]
+  console.log(router)
+  if(router == ''){ 
+    console.log(router,routeName)
+    router = '/'
+  }
+  if(router.includes(routeName)){
+    console.log(`Macth with ${routeName}`)
+    callback()
+  }
+}
 /**
  * make body to url encoded
  *
