@@ -58,6 +58,30 @@ h1 {
   }
 }
 
+.search::placeholder {
+  color: #ffffff!important;
+}
+
 .search:focus {
   outline:none;
+}
+
+.nav-android {
+  display: none;
+}
+.home-android {
+  border: none;
+}
+
+.bg-abu-abu {
+  background-color: #d9d9d9;
+}
+
+@media only screen and (max-width: 720px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-android {
+    display: block;
+  }
 }

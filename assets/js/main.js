@@ -22,7 +22,7 @@ $(document).ready(async function(){
   // set bg white if route in home
   onRouteSet('/',function(){
     setBg('','body')
-    $('body').addClass('bg-light')
+    $('body').addClass('bg-abu-abu')
   })
 
   onRouteSet('user',function(){
@@ -62,7 +62,7 @@ function toggleEye(){
  * @param el string, element to fill
  */
 function setBg(name,el){
-  $(el).css('background-image',`url(${url}assets/img/${name}) no-repeat center top`)
+  $(el).css('background-image',`url(${url}assets/img/${name})`)
 }
 
 /**
@@ -394,13 +394,13 @@ function loginUser(){
 function navbar(){
   $(document).scroll(function(){
     // make nav bar fit and transparent
-    let navEl = $('.navbar')[0]
-      , navJq = $('.navbar')
+    let navEl = $('.nav-desktop')[0]
+      , navJq = $('.nav-desktop')
       , sticky = navEl.offsetTop
     if(window.pageYOffset <= sticky){
-      $('.navbar-search').removeClass('d-flex').addClass('d-none')
+      $('.nav-desktop .navbar-search').removeClass('d-flex').addClass('d-none')
       $('.search-home').addClass('d-flex').removeClass('d-none')
-      $('.navbar-brand').removeClass('d-flex').addClass('d-none')
+      $('.nav-desktop .navbar-brand').removeClass('d-flex').addClass('d-none')
 
       navJq.addClass('p-5')
       navJq.removeClass('position-fixed')
@@ -408,9 +408,9 @@ function navbar(){
         .removeClass('p-2')
         .removeClass('shadow-sm')
     } else {
-      $('.navbar-search').addClass('d-flex').removeClass('d-none')
+      $('.nav-desktop .navbar-search').addClass('d-flex').removeClass('d-none')
       $('.search-home').removeClass('d-flex').addClass('d-none')
-      $('.navbar-brand').addClass('d-flex').removeClass('d-none')
+      $('.nav-desktop .navbar-brand').addClass('d-flex').removeClass('d-none')
 
       navJq.removeClass('p-5')
       navJq.addClass('position-fixed')
@@ -443,13 +443,11 @@ function sleep(i){
  */
 function onRouteSet(routeName, callback){
   let router = window.location.href.split(url)[1]
-  console.log(router)
+
   if(router == ''){ 
-    console.log(router,routeName)
     router = '/'
   }
   if(router.includes(routeName)){
-    console.log(`Macth with ${routeName}`)
     callback()
   }
 }

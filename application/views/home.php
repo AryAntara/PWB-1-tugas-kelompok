@@ -34,8 +34,8 @@
 </div>
 
 
-<div class="bg-light border-top border-1 border-dark" style="min-height: 100vh; width: 100vw;height: auto">
-  <div class="bg-light mt-5 px-4 mb-5" style="width:95vw"> 
+<div class="home-android bg-abu-abu border-top" style="min-height: 100vh; width: 100%;height: auto">
+  <div class="mx-auto py-3 bg-light mt-5 px-4 mb-5" style="width:95vw"> 
   <div class="d-flex justify-content-between">
     
     <h1 class="mx-2">Rekomendasi</h1>
@@ -67,7 +67,7 @@
   </div>
   </div>
 
-  <div class="d-grid bg-light mt-5 px-4" style="width:95vw"> 
+  <div class="mx-auto py-3 mb-5 d-grid bg-light mt-5 px-4" style="width:95vw"> 
   <div class="d-flex justify-content-between">
     
     <h1 class="mx-2">Popular</h1>
