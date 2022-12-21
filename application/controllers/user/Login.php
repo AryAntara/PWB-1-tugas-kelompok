@@ -11,6 +11,7 @@ class Login extends CI_Controller {
     $this->load->library('form_validation');
     $this->load->model('M_user');
   }
+
   /** 
    * Display view of login 
    *
@@ -18,6 +19,7 @@ class Login extends CI_Controller {
   public function index(){
     $this->template->render('login');
   }
+
   /**
    * prosess data from user to login
    *
@@ -25,7 +27,8 @@ class Login extends CI_Controller {
    * @request string $password, the $password is password of the current user 
    *
    * @response string $resp
-   */ 
+   */
+
   public function process(){
     # validate the form request 
     $this->form_validation->set_rules('username', 'Username', 'required', 
@@ -78,6 +81,14 @@ class Login extends CI_Controller {
       "msg" => "login berhasil",
       "code" => "20"
     ]);
+
+    // set session 
+    $data_user = [
+      'id' => $userdata->id, 
+      'username' => $this->input->post('username'),
+      'email' => $userdata->email
+    ];
+    $this->session->set_userdata($data_user);
     return; 
   }
 }

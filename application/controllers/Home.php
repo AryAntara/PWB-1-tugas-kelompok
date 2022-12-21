@@ -15,6 +15,8 @@ class Home extends CI_Controller {
    */ 
   public function __construct(){
     parent::__construct();
+    $this->load->model('M_product');
+
   }
 
   /**
@@ -23,7 +25,10 @@ class Home extends CI_Controller {
    *
    */ 
   public function index(){
+    $data = [];
+    $data['product_rekomendasi'] = array_slice($this->M_product->get_product(),0,4);
+    $data['product_popular'] = array_slice($this->M_product->get_product(),5,9);
     // load home views
-     $this->template->display('home');
+    $this->template->display('home',$data);
   }
 }

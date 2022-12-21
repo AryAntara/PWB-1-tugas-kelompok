@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center justify-content-center" style="min-height: 60vh;width: auto;">
   <div class="rounded-3 bg-light text-dark" style="height: 300px; width: 500px; opacity: 0.8">
     <div class="d-flex justify-content-center flex-column text-center" style="height: 100%; width: 100%;">
-      <h1 class="text-dark" style="opacity: 1">TOKO PAT</h1>
+      <h1 class="text-dark" style="opacity: 1">TEAMP4T Shopping</h1>
       <p>temukan pakain terbaik kalian.</p>
     </div>
   </div>
@@ -42,20 +42,21 @@
     <button class="btn mx-2 py-auto shadow-none" href="#">Lihat Semua ></button>
   </div>
   <div class="d-flex flex-wrap bg-light mt-2 justify-content-center" style="width:100%;min-height: 0; min-width: 0">
-  <?php for($i =0; $i < 5; $i++):?>
+
+  <?php foreach($product_rekomendasi as $product ):?>
     <div class="card m-2 border border-2 shadow-sm" style="width: 14rem;height: 20rem">
-    <img src="<?= base_url()?>assets/img/topi.png" class="card-img-top" alt="..." height="300px">
+    <img src="<?= base_url().$product->gambar_produk ?>" class="card-img-top" alt="..." height="300px">
       <div class="card-body">
-        <h5 class="card-title">Baju Naruto</h5>
-        <p class="card-text">Rp. 200.000</p>
+        <h5 class="card-title"><?= $product->nama_produk ?></h5>
+        <p class="card-text text-success">Rp. <?= number_format($product->harga,0,',','.') ?></p>
         <div class="d-flex">  
-        <button href="#" class="btn btn-outline-primary mx-1">
+        <button href="#" class="btn btn-outline-primary btn-sm mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
             <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
           </svg>
         </button>
-        <button href="#" class="btn btn-outline-danger mx-1">
+        <button href="#" class="btn btn-outline-danger btn-sm mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
           </svg>
@@ -63,7 +64,7 @@
         </div>
       </div>
     </div>
-  <?php endfor;?> 
+  <?php endforeach;?> 
   </div>
   </div>
 
@@ -74,20 +75,20 @@
     <button class="btn mx-2 py-auto shadow-none" href="#">Lihat Semua ></button>  
 </div>
   <div class="d-flex flex-wrap bg-light mt-2 justify-content-center" style="width:auto">
-  <?php for($i =0; $i < 5; $i++):?>
-    <div class="card m-2 border border-2 shadow-sm" style="width: 14rem; height: 18rem;">
-    <img src="<?= base_url()?>assets/img/jeans.png" class="card-img-top" alt="..." height="300px">
+  <?php foreach($product_popular as $product):?>
+    <div class="card m-2 border border-2 shadow-sm" style="width: 14rem;height: 20rem">
+    <img src="<?= base_url().$product->gambar_produk ?>" class="card-img-top" alt="..." height="300px">
       <div class="card-body">
-        <h5 class="card-title">Baju Sasuke</h5>
-        <p class="card-text">Rp. 2000.000</p>
+        <h5 class="card-title"><?= $product->nama_produk ?></h5>
+        <p class="card-text text-success">Rp. <?= number_format($product->harga,0,',','.') ?></p>
         <div class="d-flex">  
-        <button href="#" class="btn btn-outline-primary mx-1">
+        <button href="#" class="btn btn-outline-primary btn-sm mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
             <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
           </svg>
         </button>
-        <button href="#" class="btn btn-outline-danger mx-1">
+        <button href="#" class="btn btn-outline-danger btn-sm mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
           </svg>
@@ -95,7 +96,7 @@
         </div>
       </div>
     </div>
-  <?php endfor;?>
+  <?php endforeach;?>
   </div>
   </div>
 

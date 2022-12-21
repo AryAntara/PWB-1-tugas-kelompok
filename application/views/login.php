@@ -20,7 +20,7 @@
         <div class="d-grid">
           <a class="forgot-password-link text-secondary mb-2" href="<?php echo base_url()?>user/forgot_pass">Lupa password?</a>
           <button type="submit" class="btn btn-secondary rounded-pill mx-auto py-12 mt-2" style="width: 80px;">Masuk</button>
-          <a class="register-link text-secondary mt-4" href="<?php echo base_url()?>user/signup">Belum punya akun? <span>Daftar</span></a>
+          <a class="register-link text-secondary mt-5" href="<?php echo base_url()?>user/signup">Belum punya akun? <span>Daftar</span></a>
         </div>
       </form>
     </div>

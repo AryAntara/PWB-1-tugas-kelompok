@@ -55,4 +55,15 @@ class M_user extends CI_Model {
   public function update_user($email,$data){
     $this->db->where(['email' => $email])->update($this->table,$data);
   }
+
+  /**
+   * 
+   * get user id by username 
+   *
+   * @param string $username, the $username 
+   *
+   */  
+  public function get_id($username){
+    return $this->db->where('username',$username)->get($this->table)->row()->id;
+  }
 }

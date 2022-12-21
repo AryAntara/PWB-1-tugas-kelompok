@@ -31,14 +31,22 @@
         </li>
       </ul>
 
-      <form class="d-none navbar-search justify-content-center form-grup" style="width: 100%">
+      <form class="navbar-search justify-content-center form-grup d-none" style="width: 100%">
         <div class='border-1 bg-secondary text-light rounded-pill px-2' style="width: auto"> 
           <span class="material-symbols-outlined text-light fs-3 p-0 btn">search</span>
           <input class="search d-inline-block bg-secondary text-light border-0 shadow-none form-control rounded-pill" type="text" placeholder="cari pakaian disini" aria-label="Search">
         </div>
       </form>
-      <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url()?>user/login">Masuk</a>
-      <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url()?>user/signup">Daftar</a>
+      <?php if(!$this->session->userdata('id')){?>
+        <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url()?>user/login">Masuk</a>
+        <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url()?>user/signup">Daftar</a>
+      <?php } else { ?>
+        <a class="mx-2 btn d-flex px-2">
+          <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg> <span class="mr-2"><?= $this->session->userdata('username')?></span>
+        </a>
+      <?php } ?>
       <span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
         shopping_cart
       </span>
@@ -89,15 +97,24 @@
           <input class="search d-inline-block bg-secondary text-light border-0 shadow-none form-control rounded-pill" type="text" placeholder="cari pakaian disini" aria-label="Search">
         </div>
       </form>
-      <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url()?>user/login">Masuk</a>
-      <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url()?>user/signup">Daftar</a>
-      <span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
-        shopping_cart
-      </span>
-      <span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
-        chat
-      </span>
-
+     <?php if(!$this->session->userdata('id')){?>
+        <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url()?>user/login">Masuk</a>
+        <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url()?>user/signup">Daftar</a>
+      <?php } else { ?>
+        <a class="d-flex text-dark mb-2" style="text-decoration: none">
+          <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg> <span class="mr-2"><?= $this->session->userdata('username')?></span>
+        </a>
+      <?php } ?> 
+      <div class="mt-5 d-flex justify-content-center"> 
+       <span class="material-symbols-outlined p-0 fs-3 px-2">
+          shopping_cart
+        </span>
+        <span class="material-symbols-outlined p-0 fs-3 px-2">
+          chat
+        </span>
+      </div>
     </div>
   </div>
 </nav>
