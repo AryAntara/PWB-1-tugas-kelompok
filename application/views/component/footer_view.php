@@ -1,4 +1,4 @@
-<div class="postion-static bottom-0 bg-light border-top">
+<div class="bg-light postion-static bottom-0 border-top">
   <div class="container" style="width: 100%">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-0" style="height: 100px;">
     <div class="col-md-4 d-flex align-items-center">

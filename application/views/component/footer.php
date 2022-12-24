@@ -4,6 +4,8 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>				
+<script src="<?php echo base_url()?>assets/js/user.js"></script>
+<script src="<?php echo base_url()?>assets/js/product.js"></script> 
 <script src="<?php echo base_url()?>assets/js/main.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery-ui/jquery-ui.min.js"></script>
 <!-- JS -->

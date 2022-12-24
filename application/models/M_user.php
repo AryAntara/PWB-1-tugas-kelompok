@@ -66,4 +66,30 @@ class M_user extends CI_Model {
   public function get_id($username){
     return $this->db->where('username',$username)->get($this->table)->row()->id;
   }
+  /**
+   * 
+   * set product favorit for user 
+   * 
+   */
+  public function set_favorite($id_product,$id_user){
+
+    // get data from db
+    $favorite_data = $this->db->where('id',$id_user)->get($this->table)->row()->favorit; 
+    if($favorite_data){
+      $favorite_data= json_decode($favorite_data);
+
+      // check if product has favorited by user
+      if(in_array($id_product,$favorite_data) === false){
+        array_push($favorite_data,$id_product);
+      }
+
+      // update data on database
+      $this->db->where('id',$id_user)->update($this->table,['favorit' => json_encode($favorite_data)]);
+      
+    } else {
+
+      // if no data 
+      $this->db->where('id',$id_user)->update($this->table,['favorit' => json_encode([$id_product])]);
+    };
+  }
 }
