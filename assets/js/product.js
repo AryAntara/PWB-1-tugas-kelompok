@@ -36,16 +36,35 @@ async function set_favorite(id){
     })
     return await resp.text()
 }
-
+/**
+ * 
+ * remove product 
+ * 
+ */
+async function remove_favorite(id){
+    await fetch(`${url}product/favorite/discard`,{  
+        method: 'POST',
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        }, 
+        body: url_encoded({id_product: id})
+    })
+} 
 /**
  * 
  * event if favorite clicked
  * 
  */
 function fav_button_handler(){
-    $('.button-fav').click(function(){
-        console.log($(this).())
-         $(this).removeClass('btn-outline-danger')
-         $(this).addClass('btn-danger')
+    $('.button-fav').click(async function(){
+        if(!$(this).hasClass('btn-danger')){
+            await set_favorite($(this).data('id'))
+            $(this).removeClass('btn-outline-danger')
+            $(this).addClass('btn-danger')
+        } else {
+            await remove_favorite($(this).data('id'))
+            $(this).removeClass('btn-danger')
+            $(this).addClass('btn-outline-danger')
+        }
     })
 }

@@ -9,6 +9,7 @@ class Detail extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('M_product');
+    $this->load->model('M_user');
   }
 
   /**
@@ -17,7 +18,7 @@ class Detail extends CI_Controller {
   public function index(){
     $product_id = $this->input->get('product_id'); 
     $data['product'] = $this->M_product->get_by_id($product_id);
-
+    $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit);
     // load product detail view 
     $this->template->display('product_detail',$data);
 

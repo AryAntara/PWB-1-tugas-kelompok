@@ -92,4 +92,33 @@ class M_user extends CI_Model {
       $this->db->where('id',$id_user)->update($this->table,['favorit' => json_encode([$id_product])]);
     };
   }
+
+   /**
+   * 
+   * set product favorit for user 
+   * 
+   */
+  public function remove_favorite($id_product,$id_user){
+
+    // get data from db
+    $favorite_data = $this->db->where('id',$id_user)->get($this->table)->row()->favorit; 
+    if($favorite_data){
+      $favorite_data = json_decode($favorite_data);
+
+      // new data
+      $new_data = [];
+
+      foreach($favorite_data as $item){
+        if($item != $id_product){
+          
+          // data is not product id to remove
+          array_push($new_data, $item);
+        } 
+      }
+
+      // update data on database
+      $this->db->where('id',$id_user)->update($this->table,['favorit' => json_encode($new_data)]);
+      
+    } 
+  }
 }
