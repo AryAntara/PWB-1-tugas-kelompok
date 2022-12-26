@@ -1,13 +1,14 @@
 <div style="height: 80px"></div>
+<div
 <div class="bg-light containner mx-2 rounded" style="min-height: 100vh">
-  <div class="d-flex flex-wrap" style="height: 60vh; width: 100%">
+  <div class="d-flex flex-wrap" style="height: auto; width: 100%">
     <div class="d-flex justify-content-center align-items-center" style="height: auto;width: 300px"> 
-        <img src="<?= base_url().$product->gambar_produk ?>" class="img-product m-auto rounded shadow-lg border">
+        <img src="<?= base_url().$product->gambar_produk ?>" class="mt-4 img-product m-auto rounded shadow-lg border">
     </div>
-    <div style="height: 100%;width: 900px"> 
-        <table class="table table-borderless mt-4 mb-4 m-2" style="width: 500px">
+    <div style="height: auto;width: 900px"> 
+        <table class="table table-borderless mb-4 m-2" style="width: auto">
           <tr>
-            <td class="fs-4"><div class="mb-2 mt-4"><?= $product->nama_produk?></div></td>
+            <td class="fs-4"><div class="mb-2 mt-2"><?= $product->nama_produk?></div></td>
           </tr>
           <tr class="mt-2">
             <td class="table-secondary rounded-pill d-flex justify-content-center"> 
@@ -53,9 +54,9 @@
     </div>
   </div>
   
-  <div class="d-flex bg-abu-abu" style="width: 100%;">
+  <div class="bg-abu-abu desc-and-spec justify-content-between" style="width: 100%;">
 
-    <div class="bg-light me-2 p-4 ms-0 my-2" style="height: 50vh;width: 30%"> 
+    <div class="bg-light me-2 p-4 ms-0 my-2" style="height: 50vh;width: 40%"> 
       <p class="fs-4 mx-2"> Speksifikasi </p> 
       <div class="fs-6 mx-2 mb-4"> 
         <table class="table table-borderless">
@@ -83,7 +84,7 @@
       </div>
     </div>
 
-    <div class="bg-light ml-2 p-4 mr-1 my-2" style="height: 50vh;width: 75%"> 
+    <div class="bg-light ml-2 p-4 mr-1 my-2" style="height: 50vh;width: 60%"> 
       <p class="fs-4 mx-2"> Deskripsi </p> 
       <div class="fs-6 mx-2 mb-4"> 
         <?= $product->deskripsi ?>

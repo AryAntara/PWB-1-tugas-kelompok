@@ -25,6 +25,7 @@ function get_base_url(){
  * 
  * set favorite
  * 
+ * @param id: string
  */
 async function set_favorite(id){
     let resp = await fetch(`${url}product/favorite`,{
@@ -36,9 +37,11 @@ async function set_favorite(id){
     })
     return await resp.text()
 }
+
 /**
  * 
  * remove product 
+ * @param id: string 
  * 
  */
 async function remove_favorite(id){
@@ -50,6 +53,7 @@ async function remove_favorite(id){
         body: url_encoded({id_product: id})
     })
 } 
+
 /**
  * 
  * event if favorite clicked
@@ -57,14 +61,18 @@ async function remove_favorite(id){
  */
 function fav_button_handler(){
     $('.button-fav').click(async function(){
-        if(!$(this).hasClass('btn-danger')){
-            await set_favorite($(this).data('id'))
-            $(this).removeClass('btn-outline-danger')
-            $(this).addClass('btn-danger')
+
+        // id Produk
+        let idProduct = $(this).data('id')
+
+        if(!$(`.btn-product-id-${idProduct}`).hasClass('btn-danger')){
+            await set_favorite(idProduct)
+            $(`.btn-product-id-${idProduct}`).removeClass('btn-outline-danger')
+            $(`.btn-product-id-${idProduct}`).addClass('btn-danger')
         } else {
-            await remove_favorite($(this).data('id'))
-            $(this).removeClass('btn-danger')
-            $(this).addClass('btn-outline-danger')
+            await remove_favorite(idProduct)
+            $(`.btn-product-id-${idProduct}`).removeClass('btn-danger')
+            $(`.btn-product-id-${idProduct}`).addClass('btn-outline-danger')
         }
     })
 }
