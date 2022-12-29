@@ -5,7 +5,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   background-size: cover;
 }
 
@@ -84,13 +84,14 @@ h1 {
   .nav-android {
     display: block;
   }
-  .desc-and-spec {
-    display: none;
+  .desc {
+    width: 100%;
+  }
+  .spec {
+    width: 100%;
   }
 }
-.desc-and-spec {
-  display: none;
-}
+
 .card-img-top {
     width: 100%;
     height: auto;
@@ -107,11 +108,45 @@ h1 {
   height: 250px;
   object-fit: cover;
 }
+.img-product-cart {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
 .img-varian {
   width: 100px;
   height: 100px;
   object-fit: cover;
 }
-.desc {
-  margin-right: 0px;
+input[type=checkbox] {
+  transform: scale(1.5);
+}
+
+
+#container {
+  width: 100px;
+  height: 100px;
+}
+
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
+}
+
+#spinner {
+  transform-origin: center;
+  animation-name: animation;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier;
+  animation-iteration-count: infinite;
 }

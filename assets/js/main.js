@@ -2,7 +2,13 @@
  * Jquery default setup
  * @setup
  */
+window.addEventListener('load',async () => { 
+  await sleep(500)
+  loadStop()
+})
+
 $(document).ready(async function(){
+
   url = $('body').data('base-url')
   // toggle button eye 
   toggleEye()
@@ -55,12 +61,35 @@ $(document).ready(async function(){
 
   })
 
-})
+  onRouteSet('cart', function(){
+    // make navbar in top and fixed
+    let navJq = $('.nav-desktop')
+  
+    $('.nav-desktop .navbar-search').addClass('d-flex').removeClass('d-none')
+    $('.search-home').removeClass('d-flex').addClass('d-none')
+    $('.nav-desktop .navbar-brand').addClass('d-flex').removeClass('d-none')
+  
+    navJq.removeClass('p-5')
+    navJq.addClass('position-fixed')
+      .addClass('bg-light')
+      .css('width','100%')
+      .css('z-index','999')
+      .addClass('p-2')
+      .addClass('shadow-sm')
+    $(document).unbind("scroll")
+  
+  })
 
-/** 
- * global variable
- */
-let url = $('body').data('base-url')
+  // quantity operation on product detail 
+  quantityOperationBind();
+
+  // add cart operation 
+  addToCartBind()
+
+  //delete cart operation 
+  deleteFromCartBind()
+
+})
 
 /**
  * view password toggle 
@@ -179,3 +208,20 @@ function url_encoded(object) {
   return __arr.join('&')
 }
 
+/**
+ * 
+ * Loading stop 
+ * 
+ */
+function loadStop(){
+  $('div.loading').addClass('d-none').removeClass('d-flex')
+}
+
+/**
+ * 
+ * Loading Start
+ * 
+ */
+function loadStart(){
+  $('div.loading').addClass('d-flex').removeClass('d-none')
+}

@@ -5,6 +5,7 @@
  * 
  */
 class Favorite extends CI_Controller {
+
   /**
    * 
    * constructor 
@@ -23,11 +24,18 @@ class Favorite extends CI_Controller {
    */
   public function index(){
 
+    // validate the user 
+    // if not login stop process
+    if($this->tool->validate_login() == false){
+      return;
+    };
+
     // get data from post 
     $product_id = $this->input->post('id_product');
     
     // call method on model
     $this->M_user->set_favorite($product_id,$this->session->userdata('id'));
+    echo json_encode(['status' => 'success','msg' => 'success add item to favorite','code' => '203']);
   }
 
   /**
@@ -38,10 +46,18 @@ class Favorite extends CI_Controller {
    */
   public function discard(){
 
+    // validate the user 
+    // if not login stop process
+    if($this->tool->validate_login() == false){
+      return;
+    };
+
     // get data from post 
     $product_id = $this->input->post('id_product');
 
     // call method on model 
     $this->M_user->remove_favorite($product_id,$this->session->userdata('id'));
+    echo json_encode(['status' => 'success','msg' => 'success remove from favorite','code' => '202']);
   }
+
 }

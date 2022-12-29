@@ -29,7 +29,12 @@ class Home extends CI_Controller {
     $data = [];
     $data['product_rekomendasi'] = array_slice($this->M_product->get_product(),0,4);
     $data['product_popular'] = array_slice($this->M_product->get_product(),5,9);
-    $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit);
+
+    // check user has login or not
+    $data['likes_product'] = [];
+    if($this->tool->validate_login(false) == true){
+      $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit);
+    } 
     // load home views
     $this->template->display('home',$data);
   }

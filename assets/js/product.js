@@ -6,57 +6,56 @@
 function product_detail(){
     $('.product').click(function(){
         let product_id = $(this).data('id')
-        location.href = `${get_base_url()}/product/detail?product_id=${product_id}`
+        location.href = `${url}product/detail?product_id=${product_id}`
     })
 }
 
-/** 
- *
- * getting base url based  
- *
- */
-function get_base_url(){
-    redirect = location.href.split(location.pathname)[0]
-    redirect += location.pathname  
-    return redirect
-}
 
 /**
  * 
- * set favorite
- * 
- * @param id: string
- */
-async function set_favorite(id){
-    let resp = await fetch(`${url}product/favorite`,{
-        method: 'POST', 
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body : url_encoded({id_product: id}) 
-    })
-    return await resp.text()
-}
-
-/**
- * 
- * remove product 
+ * add and remove product 
  * @param id: string 
- * 
+ * @param remove: boolean, and defaut true
  */
-async function remove_favorite(id){
-    await fetch(`${url}product/favorite/discard`,{  
+async function edit_favorite(id,remove = true){
+    let urlEditFavorit = remove ? `${url}product/favorite/discard` : `${url}product/favorite` 
+    let resp = await fetch(urlEditFavorit,{  
         method: 'POST',
         headers : {
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': FORM_ENCODED 
         }, 
         body: url_encoded({id_product: id})
     })
+
+    // is an error ? 
+
+    let status = await resp.json()
+    if(status.code == '106' ){
+        // 106 is status code for 'user not login'
+
+        // display swal alert and wait for user response
+        let user_response = await Swal.fire({
+            icon: 'warning',
+            title: 'Gagal',
+            text: 'Yah, sepertinya kamu belum login nih.',
+            showCancelButton: true,
+            cancelButtonText: 'Nanti aja',
+            confirmButtonText: 'Ayo Login'
+        })
+
+        // user click 'Ayo login'
+        // redirect him to login page
+        if(user_response.isConfirmed){
+            location.href = `${url}/user/login`
+        }
+        return false
+    }
+    return true
 } 
 
 /**
  * 
- * event if favorite clicked
+ * bind an event if favorite clicked
  * 
  */
 function fav_button_handler(){
@@ -66,13 +65,65 @@ function fav_button_handler(){
         let idProduct = $(this).data('id')
 
         if(!$(`.btn-product-id-${idProduct}`).hasClass('btn-danger')){
-            await set_favorite(idProduct)
+
+            // add favorite item
+            let is_success = await edit_favorite(idProduct,false)
+            if(is_success === false){
+                return
+            }
+
             $(`.btn-product-id-${idProduct}`).removeClass('btn-outline-danger')
             $(`.btn-product-id-${idProduct}`).addClass('btn-danger')
         } else {
-            await remove_favorite(idProduct)
+
+            //remove favorite item
+            let is_success = await edit_favorite(idProduct)
+            if(is_success === false){
+                return
+            }
+
             $(`.btn-product-id-${idProduct}`).removeClass('btn-danger')
             $(`.btn-product-id-${idProduct}`).addClass('btn-outline-danger')
         }
     })
 }
+
+
+/**
+ * 
+ * Increment or Decrement custom quatity in detail 
+ * @param operation: string 
+ * @param currentElement: Document Element
+ */
+
+function quantityOperation(operation,currentElement){
+    let inputElement = $(currentElement).parent().find('input')
+    let currentValue = parseInt(inputElement.val())
+
+    if(operation === 'increment'){
+        // do a ++ operation
+        inputElement.val(++currentValue)
+    } else if(operation === 'decrement'){
+        // do a -- operation
+        if(currentValue === 0 ) return
+        inputElement.val(--currentValue)
+    }
+}
+
+/**
+ * 
+ * Bind quantity operation in button + and -
+ * 
+ */
+function quantityOperationBind(){
+    // increment
+    $('.qty-plus').click(function(){
+        quantityOperation('increment',this)
+    })
+    
+    // decrement
+    $('.qty-minus').click(function(){
+        quantityOperation('decrement',this)
+    })
+}
+

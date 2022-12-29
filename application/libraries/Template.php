@@ -18,12 +18,14 @@ class Template {
     $this->ci = &get_instance();
   }
 
-  // fungsi ini untuk melakukan render pada view 
-  // autorender untuk header 
-  // autorender untuk footer
-  // @param $path string : path dari view body yang akan di render 
-  // @param $data array : data yang akan di kirimkan ke view 
-  // @return void 
+  /**
+   * fungsi ini untuk melakukan render pada view 
+   * autorender untuk header 
+   * autorender untuk footer
+   * @param string $oath : path dari view body yang akan di render 
+   * @param array $data : data yang akan di kirimkan ke view 
+   * @return void 
+   */
   public function render($path,$data = []){
     $this->ci->load->view($this->header);
     $this->ci->load->view($path,$data);
@@ -35,7 +37,7 @@ class Template {
    * render a view with navbar included
    *
    * @param string $path, the path of view will be rendered 
-   * @para array $data, the data will inject to view
+   * @param array $data, the data will inject to view
    *
    */ 
   public function display($path,$data = []){

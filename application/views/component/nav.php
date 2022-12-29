@@ -41,15 +41,22 @@
         <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url()?>user/login">Masuk</a>
         <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url()?>user/signup">Daftar</a>
       <?php } else { ?>
-        <a class="mx-2 btn d-flex px-2">
-          <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-          </svg> <span class="mr-2"><?= $this->session->userdata('username')?></span>
-        </a>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              </svg> <span class="mr-2"><?= $this->session->userdata('username')?></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="<?= base_url() ?>user/logout">logout</a></li>
+            </ul>
+          </li>
+        </ul>
       <?php } ?>
-      <span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
+      <a href="<?= base_url('cart/detail')?>"><span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
         shopping_cart
-      </span>
+      </span></a>
       <span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
         chat
       </span>
