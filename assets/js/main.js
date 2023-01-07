@@ -9,6 +9,11 @@ window.addEventListener('load',async () => {
 
 $(document).ready(async function(){
 
+  // check screen width 
+  if($(window).width() < 1300){
+    $('.notice').addClass('d-flex').addClass('position-fixed').css('z-index','9999')
+    $('.notice').removeClass('d-none')
+  }
   url = $('body').data('base-url')
   // toggle button eye 
   toggleEye()
@@ -32,17 +37,34 @@ $(document).ready(async function(){
   // and make navbar reactive
   onRouteSet('/',function(){
     setBg('','body')
+
+    // route home
+    $('.home').addClass('active')
+    $('.produk').removeClass('active')
+
     $('body').addClass('bg-abu-abu')
     $(document).scroll(reactive_nav)
   })
 
-  onRouteSet('user',function(){
+  onRouteSet('user/login',function(){
+    setBg('handuk.png','body')
+    $('body').remove('bg-light')
+    $(document).unbind("scroll")
+  })
+
+
+  onRouteSet('user/signup',function(){
     setBg('handuk.png','body')
     $('body').remove('bg-light')
     $(document).unbind("scroll")
   })
 
   onRouteSet('product', function(){
+
+    // route home
+    $('.home').removeClass('active')
+    $('.produk').addClass('active')
+
     // make navbar in top and fixed
     let navJq = $('.nav-desktop')
 
@@ -81,7 +103,7 @@ $(document).ready(async function(){
   })
 
   // quantity operation on product detail 
-  quantityOperationBind();
+  quantityOperationBind()
 
   // add cart operation 
   addToCartBind()
@@ -89,6 +111,29 @@ $(document).ready(async function(){
   //delete cart operation 
   deleteFromCartBind()
 
+  // multiple add cart operation
+  multipleAddToCartBind()
+
+  // edit checked of an product 
+  editCheckAnProductBind()
+
+  // edit all checkbox
+  checkAllBind()
+
+  // edit product qty
+  editCartBind()
+
+  // checkout 
+  checkoutBind()
+
+  // single product checkout
+  checkoutSingleProductBind()
+  
+  // search egine 
+  searchBind()
+
+  // message handling 
+  chat()
 })
 
 /**
@@ -126,7 +171,7 @@ function setBg(name,el){
  */ 
 function reactive_nav(){
   // make nav bar fit and transparent
-  let navEl = $('.nav-desktop')[0]
+  let navEl = $('.nav-desktop')[0] ?  $('.nav-desktop')[0] : ''
     , navJq = $('.nav-desktop')
     , sticky = navEl.offsetTop
   if(window.pageYOffset <= sticky){
@@ -174,8 +219,8 @@ function sleep(i){
  * @param callback function, something to do if route match
  */
 function onRouteSet(routeName, callback){
-  let router = window.location.href.split(url)[1]
-
+  let router = window.location.href.split(url)[1] ? window.location.href.split(url)[1] : ''
+  
   if(router == ''){ 
     router = '/'
   }
@@ -224,4 +269,41 @@ function loadStop(){
  */
 function loadStart(){
   $('div.loading').addClass('d-flex').removeClass('d-none')
+}
+
+/**
+ * 
+ * Seacrh a product by name 
+ * @param name: string 
+ * 
+ */
+function searchEgine(name){
+  // setup url 
+  location.href = `${url}product/search?name=${name}`
+}
+
+/**
+ * 
+ * Seacrh event binding 
+ * 
+ */
+function searchBind(){
+  $('.search-home, .navbar-search').submit(function(event){ 
+    event.preventDefault(); 
+    // get product name 
+    $(this).find('input').each(function(){
+      let name = $(this).val()
+      searchEgine(name)
+    });
+    
+  }) 
+}
+
+/**
+ * 
+ * Back 
+ * 
+ */
+function back(){
+  history.back()
 }

@@ -18,7 +18,7 @@ Class Detail extends CI_Controller {
     function index(){
 
         $data = [];
-        $data['products'] = array_slice($this->M_product->get_product(),0,9);
+        $data['products'] = array_slice($this->M_product->get_product(),1,9);
 
         // check cart is empty or not 
         if(!$this->cart->contents()){

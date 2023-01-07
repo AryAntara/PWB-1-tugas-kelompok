@@ -5,6 +5,8 @@ ERROR :
 104 : username salah 
 105 : password salaha 
 106 : User not login
+107 : Cannot Checkout product empty
+108 : Cannot checkout Product oos 
 
 
 SUCCESS: 
@@ -14,4 +16,5 @@ SUCCESS:
 203 : success add item to favorite
 204 : success add to cart but updated
 205 : success add to cart 
+206 : successs checkout
 202 : ...

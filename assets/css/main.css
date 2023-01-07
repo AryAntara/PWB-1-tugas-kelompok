@@ -78,17 +78,9 @@ h1 {
 }
 
 @media only screen and (max-width: 720px) {
-  .nav-desktop {
-    display: none;
-  }
-  .nav-android {
-    display: block;
-  }
-  .desc {
-    width: 100%;
-  }
-  .spec {
-    width: 100%;
+  .notice {
+    display: flex;
+    position: absolute;
   }
 }
 

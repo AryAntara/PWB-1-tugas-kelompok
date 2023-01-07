@@ -74,6 +74,7 @@ function fav_button_handler(){
 
             $(`.btn-product-id-${idProduct}`).removeClass('btn-outline-danger')
             $(`.btn-product-id-${idProduct}`).addClass('btn-danger')
+            notify('Produk di tambahkan ke favorit >_<')
         } else {
 
             //remove favorite item
@@ -84,6 +85,7 @@ function fav_button_handler(){
 
             $(`.btn-product-id-${idProduct}`).removeClass('btn-danger')
             $(`.btn-product-id-${idProduct}`).addClass('btn-outline-danger')
+            notify('Produk dihapus dari favorit T_T')
         }
     })
 }

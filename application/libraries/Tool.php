@@ -7,9 +7,13 @@
 Class Tool {
     // ci setup library 
     private $ci;
+    public $url_bot;
+    public $admin_number;
 
     function __construct(){
         $this->ci = &get_instance();
+        $this->url_bot = "http://localhost:8888/message";
+        $this->admin_number = "6281337328692";
     }
 
     /**
@@ -31,4 +35,5 @@ Class Tool {
         } 
         return true;
     }
+
 }

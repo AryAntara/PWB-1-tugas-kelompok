@@ -5,7 +5,7 @@ function createUser(){
   $('.create-user').submit( async function(e){   
     // replace default form control
     e.preventDefault()   
-2
+
     // for field and value input
     let userData = {}
 

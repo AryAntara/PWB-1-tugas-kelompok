@@ -1,5 +1,38 @@
+<div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Yuk Lengkapi Form Dibawah ini.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="last-dialog" data-single-product="1">
+        <div class="modal-body">
+            <div class="form-group mt-2">
+                <label class="text-danger" for="">Alamat</label>
+                <textarea placeholder="Ketikan Alamat kamu, contoh nya wotu, Luwu Timur, Sulawesi Selatan" class="form-control w-100" name="address" id="" cols="100" rows="10"></textarea>
+            </div>
+
+            <div class="form-group mt-2">
+                <label class="text-danger" for="">No Whatsapp</label>
+                <input placeholder="ketik nomor wa mulai dari 62 tanpa tanda + ataupun 0" class="form-control w-100" type="text" name="whatsapp" id="">
+            </div>
+
+            <div class="form-group mt-2">
+                <label class="text-danger" for="">Nama Penerima</label>
+                <input placeholder="Nama yang menerima paket" class="form-control w-100" type="text" name="name" id="">
+            </div>
+        </div>
+        <div class="modal-footer mt-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-danger">Beli</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div style="height: 80px"></div>
-<div class="d-grid gap-2 bg-light containner mx-2 rounded" style="min-height: 100vh">
+<div class="d-grid gap-2 mb-2 bg-light containner mx-2 rounded" style="min-height: 100vh">
 
   <!-- Product Header -->
   <div class="d-flex flex-wrap" style="height: auto; width: 100%">
@@ -16,7 +49,7 @@
             <td class="fs-4"><div class="mb-2 mt-2"><?= $product->nama_produk?></div></td>
           </tr>
           <tr class="mt-2">
-            <td class="table-secondary rounded-pill d-flex justify-content-center"> 
+            <td class="d-none table-secondary rounded-pill d-flex justify-content-center"> 
               <div class="mx-4 border border-end">0 Bintang</div>
               <div class="mx-4">0 Ulasan</div>
               <div class="mx-4">0 Terjual</div>
@@ -45,7 +78,7 @@
             <!--  quantity -->
             <td>
               <button class="btn btn-light border border-dark btn-sm shadow-none qty-minus">-</button> 
-              <input class="text-center shadow-none border-0 border-bottom border-dark" type="text" name="" value="1" id="" style="outline: none; width: 40px;">
+              <input disabled class="text-center shadow-none border-0 border-bottom border-dark" id="value-multiple-add-cart" type="text" name="" value="1" id="" style="outline: none; width: 40px;">
               <button class="btn btn-light border border-dark btn-sm shadow-none qty-plus">+</button> 
             <td>
           </tr>
@@ -53,15 +86,15 @@
 
         <!-- button buy and add to cart -->
         <div class="m-2 p-0"> 
-          <button class="btn btn-danger">Beli Sekarang</button>
-          <button class="btn btn-outline-danger ">Masukan Keranjang</button>
+          <button class="btn btn-danger buy-one-product"  data-bs-toggle="modal" data-bs-target="#checkout" data-id="<?= $product->id_produk ?>">Beli Sekarang</button>
+          <button class="btn btn-outline-danger multiple-add-cart" data-id='<?= $product->id_produk ?>'>Masukan Keranjang</button>
         </div>
       </div>
     
   </div>
 
   <!-- varian -->
-  <div class="m-4" sytle="height: auto">
+  <div class="d-none m-4" sytle="height: auto">
     <p class="fs-4 mx-2"> Varian </p>
     <div class="bg-light d-flex align-items-center justify-content-left" style="height: 20vh;width:auto"> 
       <?php for($i = 0; $i < 3; $i++){ ?>
@@ -71,15 +104,19 @@
   </div>
   
   <!--  Spesifikasi dan Deskripsi -->
-  <div class="d-flex bg-abu-abu flex-sm-column mb-2 flex-xl-row flex-lg-row justify-content-md-center" style="width: 100%;">
+  <div class="d-flex bg-abu-abu flex-sm-column pb-2 flex-xl-row flex-lg-row justify-content-md-center" style="width: 100%;">
 
-    <div class="bg-light p-4 ms-0 mt-2 me-lg-2 mb-lg-2" style="height: 100%;width: 25%"> 
+    <div class="bg-light p-4 ms-0 mt-2 me-lg-2 mb-2" style="height: 100%;width: 25%"> 
       <p class="fs-4 mx-2"> Speksifikasi </p> 
       <div class="fs-6 mx-2 mb-4"> 
         <table class="table table-borderless">
           <tr>
             <td>Stok</td>
             <td>: &nbsp <?= $product->stok ?> PCS </td>
+          </tr>
+          <tr>
+            <td>Berat</td>
+            <td>: &nbsp <?= $product->berat_produk ?> Kg </td>
           </tr>
           <tr>
             <td>Merek</td>
@@ -104,10 +141,8 @@
     <div class="bg-light p-4 mr-1 my-2" style="height: 100%;width: 75%"> 
       <p class="fs-4 mx-2"> Deskripsi </p> 
       <div class="fs-6 mx-2 mb-4"> 
-        <?= $product->deskripsi ?>
+        <?= str_replace('\n','<br/>',$product->deskripsi) ?>
       </div>
     </div>
-
   </div>
-
 </div>

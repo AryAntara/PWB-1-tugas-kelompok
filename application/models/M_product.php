@@ -17,7 +17,9 @@ class M_product extends CI_Model {
   */
   public function get_product($pagination = null){
     if($pagination){
-      return $this->db->get($this->table,$pagination['from'],$pagination['to'])->result;
+      $data = $this->db->get($this->table,$pagination['amount'],$pagination['from'])->result();
+      return $data;
+
     }
     return $this->db->get($this->table)->result();
   }
@@ -70,6 +72,34 @@ class M_product extends CI_Model {
   public function get_length(){
     return $this->db->get($this->table)->num_rows();
   }
+
+  /**
+   * 
+   * update stock 
+   * 
+   * @param intiger $id
+   * @param intiger $qty
+   * 
+   */
+   public function  update_stock($id,$qty){
+    // get stok product
+    $data = $this->get_by_id($id)->stok;
+
+    $last_stok = $data - $qty;
+
+    $this->db->where('id_produk',$id)->update($this->table,['stok' => $last_stok]);
+   }
+
+   /**
+    * 
+    * search a product 
+    * @param string $name
+    *
+    */
+    public function search($name){
+      $this->db->like('nama_produk',$name,'both');
+      return $this->db->get($this->table)->result();
+    }
    
 }
 ?>

@@ -5,10 +5,11 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>				
-<script src="<?= base_url()?>assets/js/global.js"></script>
 <script src="<?= base_url()?>assets/js/user.js"></script>
 <script src="<?= base_url()?>assets/js/product.js"></script> 
 <script src="<?= base_url()?>assets/js/cart.js"></script>
+<script src="<?= base_url()?>assets/js/checkout.js"></script>
+<script src="<?= base_url()?>assets/js/chat.js"></script>
 <script src="<?= base_url()?>assets/js/main.js"></script>
 <script src="<?= base_url()?>assets/js/jquery-ui/jquery-ui.min.js"></script>
 <!-- JS -->

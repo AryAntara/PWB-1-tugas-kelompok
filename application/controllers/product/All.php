@@ -24,8 +24,7 @@ class All extends CI_Controller {
     public function index(){
         if(!$this->session->userdata('pagination')){
             $this->session->set_userdata(['pagination' => [
-                'from' => 0,
-                'to' => 10
+                'from' => 1,
             ]]);
         }
 
@@ -36,13 +35,16 @@ class All extends CI_Controller {
 
         // get data 
         $from = $this->session->userdata('pagination')['from'];
-        $to = $this->session->userdata('pagination')['to'];
-        $data['products'] = $this->M_product->get_product($from,$to);
+        $all_product = $this->session->userdata('all_product');
+        $data['pagi_index'] = floor(($from + 7 )/ 8);
+        $data['prev_disabled'] = $from === 1 ? 'disabled' : '';
+        $data['next_disabled'] = $from + 8 >= $all_product ? 'disabled' : '';
+        $data['products'] = $this->M_product->get_product(['from' => $from,'amount' => 8]);
 
         // check user has login or not
         $data['likes_product'] = [];
         if($this->tool->validate_login(false) == true){
-            $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit);
+            $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) ? json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) : [];
         } 
         $this->template->display('all_product',$data);
     }
@@ -51,8 +53,28 @@ class All extends CI_Controller {
      * Handle pagination data
      * 
      */
-    public function pagination(){
+    public function pagination($operation){
        
-        $operation = $this->input->post('operation');
+        // get last from value
+        $all_product = $this->session->userdata('all_product');
+        $old_from = $this->session->userdata('pagination')['from'];
+
+        if($operation === 'next'){
+            if($all_product <= $old_from+8){
+                redirect('product/all');
+            }
+            $this->session->set_userdata(['pagination' => [
+                'from' => $old_from+8,
+            ]]);
+            redirect('product/all');
+        } else if ($operation == 'prev'){
+            if($old_from <= 1){
+                redirect('product/all'); 
+            }
+            $this->session->set_userdata(['pagination' => [
+                'from' => $old_from-8,
+            ]]);
+            redirect('product/all');
+        } 
     }
 }
