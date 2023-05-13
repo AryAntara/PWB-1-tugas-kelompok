@@ -1,6 +1,5 @@
 <div style="height: 80px"></div>
-<div
-<div class="bg-light containner mx-2 rounded" style="min-height: 100vh">
+<div class="d-grid gap-2 bg-light containner mx-2 rounded" style="min-height: 100vh">
   <div class="d-flex flex-wrap" style="height: auto; width: 100%">
     <div class="d-flex justify-content-center align-items-center" style="height: auto;width: 300px"> 
         <img src="<?= base_url().$product->gambar_produk ?>" class="mt-4 img-product m-auto rounded shadow-lg border">
@@ -47,16 +46,16 @@
     </div>
   <div class="m-4" sytle="height: auto">
     <p class="fs-4 mx-2"> Varian </p>
-    <div class="bg-light d-flex align-items-center justify-content-left" style="height: 20vh;width:100%"> 
+    <div class="bg-light d-flex align-items-center justify-content-left" style="height: 20vh;width:auto"> 
       <?php for($i = 0; $i < 3; $i++){ ?>
         <img src="<?= base_url($product->gambar_produk)?>" class="img-varian rounded m-2 border border-primary">
       <?php } ?>
     </div>
   </div>
   
-  <div class="bg-abu-abu desc-and-spec justify-content-between" style="width: 100%;">
+  <div class="d-flex bg-abu-abu flex-sm-column flex-xl-row flex-lg-row justify-content-md-center" style="width: 100%;">
 
-    <div class="bg-light me-2 p-4 ms-0 my-2" style="height: 50vh;width: 40%"> 
+    <div class="bg-light p-4 ms-0 mt-2 me-lg-2 mb-lg-2" style="height: auto;width: auto"> 
       <p class="fs-4 mx-2"> Speksifikasi </p> 
       <div class="fs-6 mx-2 mb-4"> 
         <table class="table table-borderless">
@@ -84,7 +83,7 @@
       </div>
     </div>
 
-    <div class="bg-light ml-2 p-4 mr-1 my-2" style="height: 50vh;width: 60%"> 
+    <div class="bg-light p-4 mr-1 my-2" style="height: auto;width: auto"> 
       <p class="fs-4 mx-2"> Deskripsi </p> 
       <div class="fs-6 mx-2 mb-4"> 
         <?= $product->deskripsi ?>

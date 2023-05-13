@@ -84,13 +84,14 @@ h1 {
   .nav-android {
     display: block;
   }
-  .desc-and-spec {
-    display: none;
+  .desc {
+    width: 100%;
+  }
+  .spec {
+    width: 100%;
   }
 }
-.desc-and-spec {
-  display: none;
-}
+
 .card-img-top {
     width: 100%;
     height: auto;
@@ -111,7 +112,4 @@ h1 {
   width: 100px;
   height: 100px;
   object-fit: cover;
-}
-.desc {
-  margin-right: 0px;
 }
