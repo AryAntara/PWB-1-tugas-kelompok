@@ -97,6 +97,7 @@
   <div class="d-none m-4" sytle="height: auto">
     <p class="fs-4 mx-2"> Varian </p>
     <div class="bg-light d-flex align-items-center justify-content-left" style="height: 20vh;width:auto"> 
+    <div class="bg-light d-flex align-items-center justify-content-left" style="height: 20vh;width:auto"> 
       <?php for($i = 0; $i < 3; $i++){ ?>
         <img src="<?= base_url($product->gambar_produk)?>" class="img-varian rounded m-2 border border-primary">
       <?php } ?>
