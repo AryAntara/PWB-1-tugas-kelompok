@@ -29,7 +29,7 @@ Class Detail extends CI_Controller {
         // check user has login or not
         $data['likes_product'] = [];
         if($this->tool->validate_login(false) == true){
-            $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit);
+            $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) ? json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) : [];
         } 
         // load cart views 
         $this->template->display('cart',$data);

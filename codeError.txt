@@ -17,4 +17,4 @@ SUCCESS:
 204 : success add to cart but updated
 205 : success add to cart 
 206 : successs checkout
-202 : ...
+

@@ -1,6 +1,7 @@
 <div style="height: 80px"></div>
 <div class="container mt-4 bg-light mb-4 ">
     <p class="w-100 fs-5 fw-bold pt-5 pb-4 text-center">Semua Produk Kami</p>
+    <hr>
     <div class="d-flex justify-content-center flex-wrap pb-4">
         <?php foreach($products as $product):?>
             <div class="card m-2 border border-2 shadow-sm" style="width: 14rem;height: 22rem">
@@ -41,7 +42,11 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination text-center d-flex justify-content-center">
             <li class="page-item <?= $prev_disabled?>"><a class="page-link" href="<?= base_url().'product/all/pagination/prev'?>">Previous</a></li>
-            <li class="page-item"><p class="page-link" href="#"><?= $pagi_index ?></p></li>
+            <li class="page-item <?= $pagi_index - 1 == 0 ? "d-none" : "" ?>"><a class="page-link" href="<?= base_url().'product/all/pagination/'.(string)($pagi_index - 1) ?>"><?= $pagi_index - 1 ?></a></li>
+            <li class="page-item"><p class="page-link bg-primary text-light" href="#"><?= $pagi_index ?></p></li>
+            <li class="page-item <?= $pagi_index + 1 >= $pagi_length + 1 ? "d-none" : "" ?>" ><a class="page-link" href="<?= base_url().'product/all/pagination/'.(string)($pagi_index + 1) ?>"> <?= $pagi_index + 1?></a></li>
+            <li class="page-item  <?= $pagi_index >= $pagi_length ? "d-none" : "" ?>"><span class="p-2">...</span></li>
+            <li class="page-item <?= $pagi_index == $pagi_length + 1 ? "d-none" : "" ?>" <?= $pagi_index - 1 == 0 ? "d-none" : "" ?> ><a class="page-link" href="<?= base_url().'product/all/pagination/'.(string)($pagi_length + 1) ?>"> <?= $pagi_length + 1?></a></li>
             <li class="page-item <?= $next_disabled?>"><a class="page-link" href="<?= base_url().'product/all/pagination/next'?>">Next</a></li>
         </ul>
     </nav>

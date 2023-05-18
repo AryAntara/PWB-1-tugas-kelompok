@@ -36,6 +36,7 @@ class All extends CI_Controller {
         // get data 
         $from = $this->session->userdata('pagination')['from'];
         $all_product = $this->session->userdata('all_product');
+        $data['pagi_length']  = floor(($all_product)/ 8);
         $data['pagi_index'] = floor(($from + 7 )/ 8);
         $data['prev_disabled'] = $from === 1 ? 'disabled' : '';
         $data['next_disabled'] = $from + 8 >= $all_product ? 'disabled' : '';
@@ -75,6 +76,12 @@ class All extends CI_Controller {
                 'from' => $old_from-8,
             ]]);
             redirect('product/all');
-        } 
+        } else {
+            $index = $operation;
+            $this->session->set_userdata(['pagination' => [
+                'from' => (($index - 1) * 8 ) + 1
+            ]]);            
+            redirect('product/all');
+        }
     }
 }

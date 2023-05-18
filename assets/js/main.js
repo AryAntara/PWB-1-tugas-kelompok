@@ -39,7 +39,7 @@ $(document).ready(async function(){
     setBg('','body')
 
     // route home
-    $('.home').addClass('active')
+    $('.home').addClass('active')  
     $('.produk').removeClass('active')
 
     $('body').addClass('bg-abu-abu')
@@ -51,6 +51,13 @@ $(document).ready(async function(){
     $('body').remove('bg-light')
     $(document).unbind("scroll")
   })
+
+  onRouteSet('admin/auth',function(){
+    setBg('handuk.png','body')
+    $('body').remove('bg-light')
+    $(document).unbind("scroll")
+  })
+
 
 
   onRouteSet('user/signup',function(){
@@ -134,6 +141,11 @@ $(document).ready(async function(){
 
   // message handling 
   chat()
+
+  // run functions list at ready 
+  for(let func of ready){
+    func()
+  }
 })
 
 /**
@@ -177,8 +189,7 @@ function reactive_nav(){
   if(window.pageYOffset <= sticky){
     $('.nav-desktop .navbar-search').removeClass('d-flex').addClass('d-none')
     $('.search-home').addClass('d-flex').removeClass('d-none')
-    $('.nav-desktop .navbar-brand').removeClass('d-flex').addClass('d-none')
-
+    $('.nav-desktop .navbar-brand').removeClass('d-flex').addClass('d-none')    
     navJq.addClass('p-5')
     navJq.removeClass('position-fixed')
       .removeClass('bg-light')
@@ -186,12 +197,16 @@ function reactive_nav(){
       .removeClass('shadow-sm')
   } else {
     // make navbar fixed in top
-    $('.nav-desktop .navbar-search').addClass('d-flex').removeClass('d-none')
+    $('.nav-desktop').addClass('d-flex').removeClass('d-none')
+    if(!global['search']){
+      $('.navbar-search').addClass('d-flex').removeClass('d-none')
+    }
     $('.search-home').removeClass('d-flex').addClass('d-none')
     $('.nav-desktop .navbar-brand').addClass('d-flex').removeClass('d-none')
 
     navJq.removeClass('p-5')
     navJq.addClass('position-fixed')
+      .addClass('top-0')
       .addClass('bg-light')
       .css('width','100%')
       .css('z-index','999')
@@ -288,7 +303,7 @@ function searchEgine(name){
  * 
  */
 function searchBind(){
-  $('.search-home, .navbar-search').submit(function(event){ 
+  $('.search-home, .form-search').submit(function(event){ 
     event.preventDefault(); 
     // get product name 
     $(this).find('input').each(function(){
@@ -307,3 +322,31 @@ function searchBind(){
 function back(){
   history.back()
 }
+
+/**
+ * 
+ * If the magnifaying icon is clicked or hovered
+ * Show the form seacrh
+ * 
+ */
+function formSearch(){
+  $('.navbar-search').on('click', displayFormSearch)    
+  $('.form-search').hover(() => {}, hideFormSearch) 
+}
+
+function displayFormSearch(){  
+  $(this).addClass('d-none');  
+  $('.form-search').toggle('drop', {direction: "right"});
+}
+
+function hideFormSearch(){  
+  if($(this).find('input').val() == ""){    
+    global['search'] = false;
+    $('.form-search').toggle('drop', {direction: "right"});
+    $('.navbar-search').removeClass('d-none');  
+    return;
+  }  
+  global['search'] = true;
+}
+
+ready.push(formSearch)
