@@ -366,8 +366,8 @@ function displayFormSearch(){
 function hideFormSearch(){  
   if($(this).find('input').val() == ""){    
     global['search'] = false;
-    $('.form-search').toggle('drop', {direction: "right"});
-    $('.navbar-search').removeClass('d-none');  
+    // $('.form-search').toggle('drop', {direction: "right"});
+    // $('.navbar-search').removeClass('d-none');  
     return;
   }  
   global['search'] = true;
