@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 20, 2023 at 05:49 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 20 Bulan Mei 2023 pada 07.59
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `founder`
+--
+
+CREATE TABLE `founder` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `jabatan` varchar(15) NOT NULL,
+  `foto_profil` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `founder`
+--
+
+INSERT INTO `founder` (`id`, `id_user`, `jabatan`, `foto_profil`) VALUES
+(1, 33, 'Project Manager', 'giri.jpg'),
+(2, 32, 'QA Enginer', 'sony.jpg'),
+(3, 31, 'Programmer', 'yasa.jpg'),
+(4, 30, 'Programmer', 'ivan.jpg'),
+(5, 1, 'Programmer', 'ary.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -33,7 +57,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -44,7 +68,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struktur dari tabel `product`
 --
 
 CREATE TABLE `product` (
@@ -65,7 +89,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product`
+-- Dumping data untuk tabel `product`
 --
 
 INSERT INTO `product` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `harga`, `stok`, `gambar_produk`, `type`, `merek`, `jenis_kelamin`, `bahan`, `negara_asal`, `dikirim_dari`, `berat_produk`) VALUES
@@ -96,7 +120,25 @@ INSERT INTO `product` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `tentang_kami`
+--
+
+CREATE TABLE `tentang_kami` (
+  `id` int(11) NOT NULL,
+  `konten` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tentang_kami`
+--
+
+INSERT INTO `tentang_kami` (`id`, `konten`) VALUES
+(1, 'TEAM4 adalah mobile-platform pertama di Asia Tenggara (Indonesia, Filipina, Malaysia, Singapura, Thailand, Vietnam) dan Taiwan yang menawarkan transaksi jual beli online yang menyenangkan, gratis, dan terpercaya via ponsel. Bergabunglah dengan jutaan pengguna lainnya dengan mulai mendaftarkan produk jualan dan berbelanja berbagai penawaran menarik kapan saja, di mana saja. Keamanan transaksi kamu terjamin.. Ayo gabung dalam komunitas Shopee dan mulai belanja sekarang!\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -109,83 +151,83 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `phone_number`, `favorit`) VALUES
 (1, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', '[\"3\",\"20\",\"8\",\"2\",\"4\",\"26\",\"25\",\"24\",\"28\",\"16\",\"5\",\"6\"]'),
-(2, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(3, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(4, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(5, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(6, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(7, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(8, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(9, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(10, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(11, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(12, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(13, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(14, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(15, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(16, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(17, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(18, '1', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '111111111111', ''),
-(19, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(20, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary', '082399480587', ''),
-(21, 'ary', 'c4ca4238a0b923820dcc509a6f75849b', 'ivankomang@ary', '082399480587', ''),
-(22, 'mudle', 'c4ca4238a0b923820dcc509a6f75849b', 'Moodle_komang@ary', '082399480587', ''),
-(23, 'ary123', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@aryasas', '082399480587', ''),
-(24, 'aryarte', 'c4ca4238a0b923820dcc509a6f75849b', 'komang@ary123', '082399480587', ''),
-(25, 'ary12_ary', '202cb962ac59075b964b07152d234b70', 'komang@ary.com', '082399480587', ''),
-(26, 'aryantara', 'c20ad4d76fe97759aa27a0c99bff6710', 'komang@ary12', '019228931723', ''),
-(27, 'Bebas', 'c4ca4238a0b923820dcc509a6f75849b', 'hsjhdakhskdhkajh@djkd.id', '78682637462873', '[\"1\",\"4\",\"21\"]'),
-(28, 'gung sony ', '3da015fb8727d60123f0543d2e6a63fa', 'awaggen@gmail.com', '62718361237231', '[\"5\"]'),
-(29, 'gung sony 2', '3da015fb8727d60123f0543d2e6a63fa', 'xinjiangcrosin@gmail.com', '90024892304290', '');
+(30, 'ivan', '202cb962ac59075b964b07152d234b70', 'ivan@1.com', '0029000033337', ''),
+(31, 'yasa', 'c4ca4238a0b923820dcc509a6f75849b', 'yasa@1.com', '0029000033337', ''),
+(32, 'sony', 'c4ca4238a0b923820dcc509a6f75849b', 'sony@1.com', '0029000033337', ''),
+(33, 'giri', 'c4ca4238a0b923820dcc509a6f75849b', 'giri@1.com', '0029000033337', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `founder`
+--
+ALTER TABLE `founder`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `product`
+-- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `tentang_kami`
+--
+ALTER TABLE `tentang_kami`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `founder`
+--
+ALTER TABLE `founder`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `tentang_kami`
+--
+ALTER TABLE `tentang_kami`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

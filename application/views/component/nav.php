@@ -12,17 +12,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width:auto">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link home" aria-current="page" href="<?= base_url() ?>">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link produk" aria-current="page" href="<?= base_url() . 'product/all' ?>">Produk</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link kontak-kami" aria-current="page" href="<?= base_url() . 'TentangKami' ?>">Tentang Kami</a>
+
+        <li class="nav-item my-auto">
+          <a class="nav-link tentang-kami" aria-current="page" href="<?= base_url() . 'KontakKami' ?>">Tentang Kami</a>
+
         </li>
-        <li class="nav-item">
-          <p class="nav-link tentang-kami" aria-current="page" data-bs-toggle="modal" data-bs-target="#contact-us">Kontak Kami</p>
+        <li class="nav-item my-auto">
+          <a class="nav-link kontak-kami" aria-current="page" data-bs-toggle="modal" data-bs-target="#contact-us">Kontak Kami</a>
         </li>
 
         <!-- <li class="nav-item dropdown">
@@ -37,13 +39,13 @@
         </li> -->
       </ul>
 
-      <form class="form-search justify-content-center form-grup" style="width: 400px; display: none;">
+      <form class="form-search justify-content-center form-grup" style="width: 400px;">
         <div class='border-1 bg-secondary text-light rounded-pill px-2' style="width: 100%">
           <input class="search d-inline-block bg-secondary text-light border-0 shadow-none form-control rounded-pill" type="text" placeholder="cari pakaian disini" aria-label="Search" style="width: auto">
           <span class="material-symbols-outlined text-light fs-3 p-0 btn">search</span>
         </div>
       </form>
-      <span class="navbar-search material-symbols-outlined fs-3 p-0 btn" style="display: none">search</span>
+      <!-- <span class="navbar-search material-symbols-outlined fs-3 p-0 btn" style="display: none">search</span> -->
       <?php if (!$this->session->userdata('id')) { ?>
         <a class="border btn btn-outline-secondary rounded-pill p-2 mx-2" href="<?= base_url() ?>user/login">Masuk</a>
         <a class="border btn btn-primary rounded-pill p-2 mx-2" href="<?= base_url() ?>user/signup">Daftar</a>
