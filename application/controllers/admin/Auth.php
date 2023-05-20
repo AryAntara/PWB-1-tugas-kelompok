@@ -10,7 +10,7 @@ class Auth extends CI_Controller {
     parent::__construct();
     $this->load->library('form_validation');
     $this->load->model('M_user');
-    $this->load->model('M_founder')
+    $this->load->model('M_founder');
   }
 
   /** 
@@ -68,7 +68,7 @@ class Auth extends CI_Controller {
       return;
     }
 
-    if($this->M_founder->admin($userdata->id)){
+    if($this->M_founder->is_ admin($userdata->id)){
       echo json_encode([
         "status"=> "error",
         "msg" => "Kamu Bukan Admin",
