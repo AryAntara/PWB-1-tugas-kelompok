@@ -360,7 +360,7 @@ function formSearch(){
 
 function displayFormSearch(){  
   $(this).addClass('d-none');  
-  $('.form-search').toggle('drop', {direction: "right"});
+  // $('.form-search').toggle('drop', {direction: "right"});
 }
 
 function hideFormSearch(){  

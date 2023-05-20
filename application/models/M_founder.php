@@ -13,5 +13,7 @@ class M_founder extends CI_Model {
   function get(){
     return $this->db->get($this->table)->result();
   }
+
+  
 }
   ?>

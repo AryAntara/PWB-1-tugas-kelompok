@@ -20,7 +20,7 @@
         </li>
 
         <li class="nav-item my-auto">
-          <a class="nav-link tentang-kami" aria-current="page" href="<?= base_url() . 'KontakKami' ?>">Tentang Kami</a>
+          <a class="nav-link tentang-kami" aria-current="page" href="<?= base_url() . 'TentangKami' ?>">Tentang Kami</a>
 
         </li>
         <li class="nav-item my-auto">
