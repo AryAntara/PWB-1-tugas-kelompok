@@ -250,8 +250,14 @@ function loginUser(){
       userDataToSend[e] = userData[e]['value']
     })
 
+    let loginUrl = `${url}user/login/process`;
+    // admin user
+    if($(this).hasClass('admin')){
+      loginUrl =  `${url}login/auth/login_admin`
+    }
+
     // fetching data 
-    let response = await fetch(`${url}user/login/process`,{
+    let response = await fetch(loginUrl,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
