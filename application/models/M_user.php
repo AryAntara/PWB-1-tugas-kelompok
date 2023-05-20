@@ -121,4 +121,7 @@ class M_user extends CI_Model {
       
     } 
   }
+  public function where($where){
+    return $this->db->where($where)->get($this->table)->row();
+  }
 }

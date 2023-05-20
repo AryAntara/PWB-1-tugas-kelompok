@@ -95,6 +95,7 @@ $(document).ready(async function(){
     // route home
     $('.home').removeClass('active')
     $('.tentang-kami').addClass('active')
+    $('body').addClass('bg-abu-abu')
 
     // make navbar in top and fixed
     let navJq = $('.nav-desktop')
