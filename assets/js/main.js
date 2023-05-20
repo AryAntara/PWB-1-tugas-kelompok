@@ -90,6 +90,30 @@ $(document).ready(async function(){
 
   })
 
+  onRouteSet('TentangKami', function(){
+
+    // route home
+    $('.home').removeClass('active')
+    $('.tentang-kami').addClass('active')
+
+    // make navbar in top and fixed
+    let navJq = $('.nav-desktop')
+
+    $('.nav-desktop .navbar-search').addClass('d-flex').removeClass('d-none')
+    $('.search-home').removeClass('d-flex').addClass('d-none')
+    $('.nav-desktop .navbar-brand').addClass('d-flex').removeClass('d-none')
+
+    navJq.removeClass('p-5')
+    navJq.addClass('position-fixed')
+      .addClass('bg-light')
+      .css('width','100%')
+      .css('z-index','999')
+      .addClass('p-2')
+      .addClass('shadow-sm')
+    $(document).unbind("scroll")
+
+  })
+
   onRouteSet('cart', function(){
     // make navbar in top and fixed
     let navJq = $('.nav-desktop')

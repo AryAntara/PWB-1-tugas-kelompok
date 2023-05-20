@@ -19,7 +19,7 @@
           <a class="nav-link produk" aria-current="page" href="<?= base_url() . 'product/all' ?>">Produk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link kontak-kami" aria-current="page" href="<?= base_url() . 'KontakKami' ?>">Tentang Kami</a>
+          <a class="nav-link kontak-kami" aria-current="page" href="<?= base_url() . 'TentangKami' ?>">Tentang Kami</a>
         </li>
         <li class="nav-item">
           <p class="nav-link tentang-kami" aria-current="page" data-bs-toggle="modal" data-bs-target="#contact-us">Kontak Kami</p>
