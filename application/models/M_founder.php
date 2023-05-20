@@ -15,7 +15,7 @@ class M_founder extends CI_Model {
   }
 
   function is_admin($id_user){
-    return $this->db->where(['id_user',$id_user])->get($this->table)->num_rows() < 1;
+    return $this->db->where(['id_user' => $id_user])->get($this->table)->row() ? true : false;
   }
 
 }

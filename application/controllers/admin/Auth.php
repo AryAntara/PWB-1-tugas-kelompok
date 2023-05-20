@@ -68,7 +68,7 @@ class Auth extends CI_Controller {
       return;
     }
 
-    if($this->M_founder->is_ admin($userdata->id)){
+    if(!$this->M_founder->is_admin($userdata->id)){
       echo json_encode([
         "status"=> "error",
         "msg" => "Kamu Bukan Admin",
@@ -80,6 +80,7 @@ class Auth extends CI_Controller {
     echo json_encode([
       "status" => "success",
       "msg" => "login berhasil sebagai admin",
+      "redirect_to" => base_url(). "admin/dashboard",
       "code" => "21"
     ]);
 

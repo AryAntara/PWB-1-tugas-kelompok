@@ -252,8 +252,8 @@ function loginUser(){
 
     let loginUrl = `${url}user/login/process`;
     // admin user
-    if($(this).hasClass('admin')){
-      loginUrl =  `${url}login/auth/login_admin`
+    if($(this).hasClass('admin')){      
+      loginUrl =  `${url}admin/auth/login_admin`      
     }
 
     // fetching data 
@@ -265,8 +265,7 @@ function loginUser(){
       body: url_encoded(userDataToSend)
     })
 
-    response = await response.json()
-
+    response = await response.json()    
     if(response.code == '104' && response.status == 'error'){
       // username salah
       // alert 
@@ -315,13 +314,42 @@ function loginUser(){
 
     }
 
+    if(response.code == '106' && response.status == 'error'){
+      // password salah 
+      // alert 
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Kamu Bukan Admin`,
+      })
+
+      // add input error 
+      $(userData['password']['tag']).parent().removeClass('border').removeClass('border-secondary')
+        .addClass('border-danger').addClass('border').addClass('shake-me')
+        
+      // reset input in 800 ms
+      await sleep(800)
+      let phoneInput = $(userData['password']['tag']).parent()
+      if(phoneInput.hasClass('border-danger')){
+        phoneInput.removeClass('border-danger').removeClass('border').removeClass('shake-me')
+          .addClass('border-secondary').addClass('border')
+      }
+      return 
+
+    }
     // login success
     await Swal.fire({
       icon: 'success',
       title: 'Hore...',
       text: `Process Masuk Berhasil`,
     })
-    window.location.href = `${url}`
+
+    if(response.redirect_to){
+        window.location.href = `${response.redirect_to}`;  
+        return;
+    }
+
+    window.location.href = `${url}`;
   })
 }
 
