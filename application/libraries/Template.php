@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  *
  * Class for handle template libraries 
@@ -6,15 +7,19 @@
  * @create team_4
  * @license MIT
  *
- */ 
-class Template {
+ */
+class Template
+{
   private $header = "component/header";
   private $footer = "component/footer";
   private $nav = "component/nav";
+  private $admin_file = "component/admin";
   private $footer_view = "component/footer_view";
+  private $sidebar = "component/sidebar";
   private $ci;
 
-  function __construct(){
+  function __construct()
+  {
     $this->ci = &get_instance();
   }
 
@@ -26,9 +31,10 @@ class Template {
    * @param array $data : data yang akan di kirimkan ke view 
    * @return void 
    */
-  public function render($path,$data = []){
+  public function render($path, $data = [])
+  {
     $this->ci->load->view($this->header);
-    $this->ci->load->view($path,$data);
+    $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer);
   }
 
@@ -39,12 +45,29 @@ class Template {
    * @param string $path, the path of view will be rendered 
    * @param array $data, the data will inject to view
    *
-   */ 
-  public function display($path,$data = []){
+   */
+  public function display($path, $data = [])
+  {
     $this->ci->load->view($this->header);
     $this->ci->load->view($this->nav);
-    $this->ci->load->view($path,$data);
+    $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer_view);
+    $this->ci->load->view($this->footer);
+  }
+
+  /**
+   *  
+   *  render a View With sidebar include 
+   *  @param string $path 
+   *  @param array $data, the data will inject to view 
+   *
+   */
+  public function display_admin($path, $data = [])
+  {
+    $this->ci->load->view($this->header);
+    $this->ci->load->view($this->admin_file);
+    $this->ci->load->view($this->sidebar);    
+    $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer);
   }
 }
