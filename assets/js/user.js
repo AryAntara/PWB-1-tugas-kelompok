@@ -251,6 +251,7 @@ function loginUser(){
     })
 
     let loginUrl = `${url}user/login/process`;
+    
     // admin user
     if($(this).hasClass('admin')){      
       loginUrl =  `${url}admin/auth/login_admin`      
