@@ -5,6 +5,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>				
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 <script src="<?= base_url()?>assets/js/user.js"></script>
 <script src="<?= base_url()?>assets/js/product.js"></script> 
 <script src="<?= base_url()?>assets/js/cart.js"></script>

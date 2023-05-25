@@ -373,5 +373,27 @@ function hideFormSearch(){
   }  
   global['search'] = true;
 }
-
 ready.push(formSearch)
+
+function renderGraph(){
+  const graphElement = $('.graph');
+  const config = {
+    type: 'bar',
+    data: {      
+      datasets: [{
+        label: "data penjualan",
+        data: [20, 10, 12, 4, 12, 79, 80, 12, 46, 76, 88, 99],
+      }],
+      labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },    
+    plugins: [],
+  }
+
+new Chart(graphElement,config); 
+}
+
+ready.push(renderGraph);

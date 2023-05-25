@@ -13,9 +13,11 @@ class Template
   private $header = "component/header";
   private $footer = "component/footer";
   private $nav = "component/nav";
+  private $enduser_file = "component/enduser";
   private $admin_file = "component/admin";
   private $footer_view = "component/footer_view";
   private $sidebar = "component/sidebar";
+  private $nav_admin = "component/nav_admin";
   private $ci;
 
   function __construct()
@@ -34,6 +36,7 @@ class Template
   public function render($path, $data = [])
   {
     $this->ci->load->view($this->header);
+    $this->ci->load->view($this->enduser_file);
     $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer);
   }
@@ -49,6 +52,7 @@ class Template
   public function display($path, $data = [])
   {
     $this->ci->load->view($this->header);
+    $this->ci->load->view($this->enduser_file);
     $this->ci->load->view($this->nav);
     $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer_view);
@@ -65,8 +69,9 @@ class Template
   public function display_admin($path, $data = [])
   {
     $this->ci->load->view($this->header);
-    $this->ci->load->view($this->admin_file);
-    $this->ci->load->view($this->sidebar);    
+    $this->ci->load->view($this->admin_file);    
+    $this->ci->load->view($this->sidebar);
+    $this->ci->load->view($this->nav_admin);
     $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer);
   }
