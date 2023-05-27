@@ -22,7 +22,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="<?= base_url() . "admin/product" ?>" class="nav-link text-white">
             <i class="bi bi-file-plus me-2"></i>
             Products
           </a>

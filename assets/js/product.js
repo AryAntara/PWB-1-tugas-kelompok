@@ -129,3 +129,23 @@ function quantityOperationBind(){
     })
 }
 
+
+function form_send(){
+    $('.form-send').on('submit', function(e){
+        e.preventDefault();
+        let form = {}; 
+        $(this).find('input, textarea').each(function() {
+            let name = $(this).attr('name');
+            let value = $(this).val();
+            form[name] = value; 
+        });
+        
+        $.ajax({ 
+            url: $(this).attr('action'),
+            type : "post",
+            data : form
+        })
+
+    })
+}
+ready.push(form_send);

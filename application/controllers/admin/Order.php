@@ -35,7 +35,7 @@ class Order extends CI_Controller
       $value->product = $this->M_product->where(['id_produk' => $value->id_product]);
 
       if (
-        isset($filter['user']) && $filter['user'] !== $value->user->id
+        isset($filter['user']) && $filter['user'] !== '' && $filter['user'] !== $value->user->id
         || isset($filter['start']) && strtotime($value->order_date) <  strtotime($filter['start'])
       ) {
 
