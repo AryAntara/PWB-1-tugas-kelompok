@@ -107,8 +107,7 @@
           <div class="mt-2">
             <div class="form-group">
               <label>Message</label>
-              <textarea rows="10" class="form-control" style="width: 100%;">
-              </textarea>
+              <textarea rows="10" class="form-control" style="width: 100%;"></textarea>
             </div>
           </div>
         </div>

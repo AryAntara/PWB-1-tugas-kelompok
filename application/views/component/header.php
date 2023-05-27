@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/js/jquery-ui/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <!-- CSS -->
   <!-- JS -->
   <script src="<?= base_url() ?>assets/js/global.js"></script>

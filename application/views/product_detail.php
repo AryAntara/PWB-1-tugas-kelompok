@@ -103,7 +103,7 @@
       <?php } ?>
     </div>
   </div>
-  
+ </div> 
   <!--  Spesifikasi dan Deskripsi -->
   <div class="d-flex bg-abu-abu flex-sm-column pb-2 flex-xl-row flex-lg-row justify-content-md-center" style="width: 100%;">
 

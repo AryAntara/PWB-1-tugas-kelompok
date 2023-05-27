@@ -1,4 +1,4 @@
-    <div class="w-100 px-5">
+    <div class="w-100 px-5 mb-5">
       <div class="d-flex flex-wrap justify-content-center bg-light" style="width: 100%;">
         <div class="bg-light py-2 p-2 mt-5" style="width: 16rem;">
           <div class="d-flex justify-content-center">
@@ -10,7 +10,7 @@
             <div class="d-flex flex-column justify-content-between">
               <p class="text-left px-2 mb-0 fs-6 text-secondary">Products</p>
               <div class="px-2 rounded align-middle text-dark text-left align-middle" style="width: auto; height: 100px;">
-                <h1 style="font-size: 40px">10K</h1>
+                <h1 style="font-size: 40px"><?= $product_count ?></h1>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
             <div class="d-flex flex-column justify-content-between">
               <p class="text-left px-2 mb-0 fs-6 text-secondary">Orders</p>
               <div class="px-2 rounded align-middle text-dark text-left align-middle" style="width: auto; height: 100px;">
-                <h1 style="font-size: 40px">10K</h1>
+                <h1 style="font-size: 40px"><?= $order_count['count'] ?></h1>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
             <div class="d-flex flex-column justify-content-between">
               <p class="text-left px-2 mb-0 fs-6 text-secondary">Admin</p>
               <div class="px-2 rounded align-middle text-dark text-left align-middle" style="width: auto; height: 100px;">
-                <h1 style="font-size: 40px">10K</h1>
+                <h1 style="font-size: 40px"> <?= $admin_count ?> </h1>
               </div>
             </div>
           </div>
@@ -48,8 +48,8 @@
       </div>
 
       <div class="mt-3 d-inline-block bg-light w-100" style="height: 300px; position: relative">
-        <canvas class="graph"></canvas>
+        <canvas class="graph" data-order="<?= json_encode($order_count['per_month']) ?>"></canvas>
       </div>
     </div>
-</div>
-<!-- Right Content Closed  -->
+    </div>
+    <!-- Right Content Closed  -->

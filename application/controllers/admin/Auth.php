@@ -1,12 +1,15 @@
-<?php 
+<?php
+
 /**
  * Class for login user 
  *
  * @create Team_4
  * @lincense MIT 
  */
-class Auth extends CI_Controller { 
-  function __construct(){
+class Auth extends CI_Controller
+{
+  function __construct()
+  {
     parent::__construct();
     $this->load->library('form_validation');
     $this->load->model('M_user');
@@ -16,26 +19,34 @@ class Auth extends CI_Controller {
   /** 
    * Display view of login 
    *
-   */ 
-  public function index(){
+   */
+  public function index()
+  {
     $this->template->render('admin/login');
   }
 
-  function login_admin(){    
+  function login_admin()
+  {
     # validate the form request 
-    $this->form_validation->set_rules('username', 'Username', 'required', 
+    $this->form_validation->set_rules(
+      'username',
+      'Username',
+      'required',
       array('required' => 'Nama Pengguna tidak boleh kosong')
     );
-    $this->form_validation->set_rules('password', 'Password', 'required',
+    $this->form_validation->set_rules(
+      'password',
+      'Password',
+      'required',
       array('required' => 'Kata Sandi tidak boleh kosong')
     );
 
     $form_error = $this->form_validation->run() == FALSE;
 
-    if($form_error){
+    if ($form_error) {
       echo json_encode([
-        'status' => 'error', 
-        'msg' => 'one or more field empty', 
+        'status' => 'error',
+        'msg' => 'one or more field empty',
         'code' => '101'
       ]);
       return;
@@ -47,7 +58,7 @@ class Auth extends CI_Controller {
 
     // check username 
     $there_is_username = !$this->M_user->check_username($username);
-    if(!$there_is_username){
+    if (!$there_is_username) {
       echo json_encode([
         "status" => "error",
         "msg" => "username salah",
@@ -57,20 +68,20 @@ class Auth extends CI_Controller {
     }
 
     // get userdata in database by their username
-    $userdata = $this->M_user->get_user(null,$username);
-  
-    if(md5($password) != $userdata->password){
+    $userdata = $this->M_user->get_user(null, $username);
+
+    if (md5($password) != $userdata->password) {
       echo json_encode([
-        "status"=> "error",
+        "status" => "error",
         "msg" => "password salah",
         "code" => "105"
       ]);
       return;
     }
 
-    if(!$this->M_founder->is_admin($userdata->id)){
+    if (!$this->M_founder->is_admin($userdata->id)) {
       echo json_encode([
-        "status"=> "error",
+        "status" => "error",
         "msg" => "Kamu Bukan Admin",
         "code" => "106"
       ]);
@@ -80,18 +91,25 @@ class Auth extends CI_Controller {
     echo json_encode([
       "status" => "success",
       "msg" => "login berhasil sebagai admin",
-      "redirect_to" => base_url(). "admin/dashboard",
+      "redirect_to" => base_url() . "admin/dashboard",
       "code" => "21"
     ]);
 
     // set session 
     $data_user = [
-      'id' => $userdata->id, 
+      'id' => $userdata->id,
       'username' => $this->input->post('username'),
       'email' => $userdata->email,
       'is_admin' => true
     ];
     $this->session->set_userdata($data_user);
-    return; 
-  }  
+    return;
+  }
+
+  function logout()
+  {
+    session_destroy();
+    // redirect to home 
+    redirect();
+  }
 }

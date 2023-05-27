@@ -68,10 +68,16 @@ class Template
    */
   public function display_admin($path, $data = [])
   {
+    $user_id = $this->ci->session->userdata('id'); 
+    $member_admin = $this->ci->db->where('id', $user_id)->get('user')->row();
+    $data_admin = [
+      'email' => $member_admin->email, 
+      'phone' => $member_admin->phone_number
+    ];    
     $this->ci->load->view($this->header);
     $this->ci->load->view($this->admin_file);    
     $this->ci->load->view($this->sidebar);
-    $this->ci->load->view($this->nav_admin);
+    $this->ci->load->view($this->nav_admin, $data_admin); 
     $this->ci->load->view($path, $data);
     $this->ci->load->view($this->footer);
   }

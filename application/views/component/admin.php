@@ -1,4 +1,4 @@
-<body data-username="<?= $this->session->userdata('username') ?>" data-base-url="<?php echo base_url() ?>" stytle="overflow-y: hidden">
+<body data-username="<?= $this->session->userdata('username') ?>" data-base-url="<?php echo base_url() ?>" style="overflow-y: hidden">
 
   <!-- Disable web when access in small device -->
   <!-- <div class="bg-light d-none notice align-items-center" style="width: 99vw;height: 100vh"> -->
@@ -19,4 +19,4 @@
         <circle id="spinner" style="fill:transparent;stroke:#d9533f;stroke-width: 7px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45" />
       </svg>
     </div>
-  </div>  
+  </div>
