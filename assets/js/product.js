@@ -133,8 +133,11 @@ function quantityOperationBind(){
 function form_send(){
     $('.form-send').on('submit', function(e){
         e.preventDefault();
+
+        // remove error message
+        $('small.text-danger').remove()
         let form = {}; 
-        $(this).find('input, textarea').each(function() {
+        $(this).find('input, textarea, select').each(function() {
             let name = $(this).attr('name');
             let value = $(this).val();
             form[name] = value; 
@@ -143,7 +146,21 @@ function form_send(){
         $.ajax({ 
             url: $(this).attr('action'),
             type : "post",
-            data : form
+            data : form,
+            success : function(data){
+                data = JSON.parse(data);
+                if(data.error){
+                    Object.keys(data).forEach(e => {
+                        $(`[name="${e}"]`).parent().append(`<small class="text-danger">${data[e]}</small>`);
+                    });
+                    // login success
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Waduh :(',
+                        text: `Ada ketinggalan!`,
+                    })
+                }                
+            }
         })
 
     })

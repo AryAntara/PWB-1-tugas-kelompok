@@ -117,4 +117,7 @@ class M_product extends CI_Model
   {
     return $this->db->where($where)->get($this->table)->row();
   }
+  public function insert($data){
+    $this->db->insert($this->table, $data);
+  }
 }

@@ -40,7 +40,7 @@ class Product extends CI_Controller
     $form_error = $this->form_validation->run();
     if($form_error === false){
       $errors = [
-        'nama_product' => form_error('nama_product'),
+        'nama_produk' => form_error('nama_produk'),
         'deskripsi' => form_error('deskripsi'),
         'harga' => form_error('harga'),
         'stok' => form_error('stok'),
@@ -52,14 +52,38 @@ class Product extends CI_Controller
         'negara_asal' => form_error('negara_asal'),
         'dikirim_dari' => form_error('dikirim_dari'),
         'berat_produk' => form_error('berat_produk'),
+        'error' => true
       ];
       echo json_encode($errors);
       return;
     }
 
-    foreach($post_data as $key => $val){
-      print_r($key);
-    };
+    // save image 
+    $config['upload_path']  = './assets/img/product/'.$post_data['tipe'];
+    $config['file_name'] = rand().'.jpg';
+    $config['allowed_types'] = 'gif|jpg|png';    
+
+    $this->load->library('upload', $config);    
+
+    $product = [
+      'nama_produk' => $post_data['nama_produk'],
+      'deskripsi' => $post_data['deskripsi'],
+      'harga' => $post_data['harga'],
+      'stok' => $post_data['stok'],
+      'gambar' => '/assets/img/product/'.$config['file_name'],
+      'tipe' => $post_data['tipe'],
+      'merek' => $post_data['merk'],
+      'jenis_kelamin' => $post_data['jenis_kelamin'],
+      'bahan' => $post_data['bahan'],
+      'negara_asal' => $post_data['negara_asal'],
+      'dikirim_dari' => $post_data['dikirim_dari'],
+      'berat_produk' => $post_data['berat_produk'],      
+    ];
+    $this->M_product->insert($product);
+    echo $this->db->last_query();
+
+
+
   }
   
 }

@@ -65,7 +65,7 @@
   <!-- Modal -->
 <div class="modal fade" id="tambah-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form class="form-send" action="<?= base_url() . "admin/product/insert" ?>" method="post"> 
+    <form class="form-send" enctype="multipart/form-data" action="<?= base_url() . "admin/product/insert" ?>" method="post"> 
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Product</h1>
