@@ -81,9 +81,11 @@ class Product extends CI_Controller
     ];
     $this->M_product->insert($product);
     echo $this->db->last_query();
+  }
 
-
-
+  function delete(){
+    $id_product = $this->input->get('id_product');
+    $this->M_product->delete(['id_produk' => $id_product ]);    
   }
   
 }

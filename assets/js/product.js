@@ -166,3 +166,25 @@ function form_send(){
     })
 }
 ready.push(form_send);
+
+function buttonDelete(){
+    $('.btn-hapus').on('click', function(){
+        Swal.fire({
+            icon : 'warning',
+            title : 'Hapus',
+            text : 'Yakin mau hapus data ini ?',
+            showCancelButton: true,
+        }).then(async e => {
+            if(e.isConfirmed){
+                await $.ajax($(this).data('route'));
+                await Swal.fire({
+                    icon : 'success',
+                    title : 'Berhasil',
+                    text : 'Hore! berhasil',                    
+                });  
+                window.location.reload();
+            }
+        })
+    })
+}
+ready.push(buttonDelete);

@@ -3,11 +3,8 @@
   <div class="justify-content-between py-2 mt-2 d-flex" style="width: 100%;background-color:transparent">
     <!-- <div class="d-flex" style="width:auto"> -->
     <button class="bg-primary text-light me-2 px-2 btn fw-bold rounded" style="cursor:default; outline: none;">
-      <i class="bi bi-box-fill me-2"></i> List Product
-    </button>    
-    <button data-bs-toggle="modal" data-bs-target="#tambah-product" class="bg-primary text-light me-2 px-2 btn fw-bold rounded" style="cursor:default; outline: none;">
-      <i class="bi bi-bag-plus-fill me-2"></i> Tambah Product
-    </button>    
+      <i class="bi bi-person-circle me-2"></i> List Admin 
+    </button>        
     <!-- </div> -->
     <!-- <div class="d-flex bg-primary p-1 rounded">
       <input type="text" class="me-2 form-control">
@@ -19,7 +16,7 @@
 <div class="d-flex rounded flex-wrap justify-content-start bg-light" style="width: 100%;">
     <div class="bg-light py-2 p-2 mt-2" style="width: 100%;">
       <div class="px-4 mt-4">
-        <?php if (count($products) < 1) { ?>
+        <?php if (count($founder) < 1) { ?>
           <table class="table w-100 table-borderless">
             <tr>
               <td class="first" colspan="5">
@@ -33,25 +30,19 @@
               <tr>
                 <th class="text-center">No. </th>
                 <th width="350px">Name</th>
-                <th width="200px" align="center">Gambar</th>
-                <th>Stok</th>
-                <th>harga</th>
+                <th width="200px" align="center">Jabatan</th>                
                 <th>Menu</th>
               </tr>
             </thead>
-            <?php foreach($products as $no => $product){ ?>
+            <?php foreach($founder as $no => $item){ ?>
                 <tbody> 
                     <td class="first">
                         <div class="text-secondary justify-content-center"> <?= $no+1 ?></div> 
                     </td>
-                    <td><div><?= $product->nama_produk ?></div></td>
-                    <td><div><img src="<?= base_url() . $product->gambar_produk ?>" width="75px" height="75px" style="object-fit: cover"></div></td>                    
-                    <td><div><?= number_format($product->stok) ?></div></td>
-                    <td><div>Rp. <?= number_format($product->harga) ?></div></td>
-                    <td><div>
-                        <button data-route="<?= base_url().'admin/product/delete?id_product='.$product->id_produk  ?>" class="btn btn-danger btn-hapus mx-1">Delete</i></a>
-                        <button class="btn btn-primary mx-1">Edit</i></button>
-                        <a href="<?= base_url()."product/detail?product_id=$product->id_produk"  ?>" target="_blank" class="btn btn-success mx-1 text-white">Detail</a>
+                    <td><div><?= $item->user->username ?></div></td>                    
+                    <td><div><?= $item->jabatan ?></div></td>                    
+                    <td><div>                        
+                        <button class="btn btn-primary">edit</button>
                     </div></td>
                 </tbody>
             <?php }?>

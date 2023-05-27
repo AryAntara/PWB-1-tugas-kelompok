@@ -28,7 +28,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="<?= base_url() . "admin/administrator" ?>" class="nav-link text-white">
             <i class="bi bi-people me-2"></i> Admins
           </a>
         </li>

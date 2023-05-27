@@ -120,4 +120,7 @@ class M_product extends CI_Model
   public function insert($data){
     $this->db->insert($this->table, $data);
   }
+  public function delete($where){
+    $this->db->delete($this->table, $where);
+  }
 }
