@@ -47,7 +47,23 @@
         </div>
       </div>
 
-      <div class="mt-3 d-inline-block bg-light w-100" style="height: 300px; position: relative">
+      <div class="mb-2 mt-5 d-flex rounded flex-wrap justify-content-start" style="width: 100%;">
+        <div class="justify-content-between py-2 mt-2 d-flex" style="width: 100%;background-color:transparent">
+          <div class="d-flex" style="width:auto">
+            <button class="bg-primary text-light me-2 px-2 btn fw-bold rounded" style="cursor:default; outline: none;">
+              <i class="bi bi-bar-chart-line-fill"></i> Graphic Penjualan
+            </button>
+            <a href="<?= base_url() . 'admin/order' ?>" class="bg-primary text-light me-2 px-2 btn fw-bold rounded">
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+          </div>
+          <!-- <div class="d-flex bg-primary p-1 rounded">
+        <input type="text" class="me-2 form-control">
+        <button class="btn btn-outline-light"><i class="bi bi-search"></i></button>
+      </div> -->
+        </div>
+      </div>
+      <div class="d-inline-block bg-light w-100" style="height: 300px; position: relative">
         <canvas class="graph" data-order="<?= json_encode($order_count['per_month']) ?>"></canvas>
       </div>
     </div>

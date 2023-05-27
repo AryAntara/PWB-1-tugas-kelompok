@@ -1,4 +1,4 @@
-<body data-username="<?= $this->session->userdata('username') ?>" data-base-url="<?php echo base_url() ?>" style="overflow-y: hidden">
+<body class="admin" data-username="<?= $this->session->userdata('username') ?>" data-base-url="<?php echo base_url() ?>" style="overflow-y: hidden">
 
   <!-- Disable web when access in small device -->
   <!-- <div class="bg-light d-none notice align-items-center" style="width: 99vw;height: 100vh"> -->

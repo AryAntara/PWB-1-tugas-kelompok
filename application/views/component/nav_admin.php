@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
         <div class="d-flex text-secodary">
-          Dashboard TEAMP4T Shopping
+          <!-- Dashboard TEAMP4T Shopping -->
         </div>
         <div class="dropdown">
           <a href="#" class="ms-4 d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

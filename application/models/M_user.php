@@ -33,12 +33,14 @@ class M_user extends CI_Model
    * @param string $email, the $email is email from that user
    * @return object $msqli_result, the result from mysql
    */
-  public function get_user($email, $username = null)
+  public function get_user($email = null, $username = null)
   {
     if ($username) {
       return $this->db->where(['username' => $username])->get($this->table)->row();
+    } else if ($email) {
+      return $this->db->where(['email' => $email])->get($this->table)->row();
     }
-    return $this->db->where(['email' => $email])->get($this->table)->row();
+    return $this->db->get($this->table)->result();
   }
   /**
    * check username is not using by other user 
