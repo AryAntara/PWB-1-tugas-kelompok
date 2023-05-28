@@ -39,7 +39,7 @@
                 <th>Menu</th>
               </tr>
             </thead>
-            <?php foreach($products as $no => $product){ ?>
+            <?php foreach ($products as $no => $product) { ?>
                 <tbody> 
                     <td class="first">
                         <div class="text-secondary justify-content-center"> <?= $no+1 ?></div> 
@@ -50,9 +50,9 @@
                     <td><div>Rp. <?= number_format($product->harga) ?></div></td>
                     <td><div>
                         <button data-route="<?= base_url().'admin/product/delete?id_product='.$product->id_produk  ?>" class="btn btn-danger btn-hapus mx-1">Delete</i></a>
-                        <button class="btn btn-primary mx-1">Edit</i></button>
+                        <button data-row='<?= json_encode($product) ?>' class="btn-edit-produk btn btn-primary mx-1">Edit</button>
                         <a href="<?= base_url()."product/detail?product_id=$product->id_produk"  ?>" target="_blank" class="btn btn-success mx-1 text-white">Detail</a>
-                    </div></td>
+                    </div></td>                    
                 </tbody>
             <?php }?>
           </table>
@@ -68,7 +68,7 @@
     <form class="form-send" enctype="multipart/form-data" action="<?= base_url() . "admin/product/insert" ?>" method="post"> 
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Product</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="bi bi-bag-plus me-2"></i> Tambah Product</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -78,7 +78,7 @@
         </div>
         <div class="form-group mt-2 w-100 me-0">
             <label for="">Deskripsi</label>
-            <textarea type="text" class="form-control mt-1 w-100" name="deskripsi"></textarea>
+            <textarea type="text" rows="10" class="form-control mt-1 w-100" name="deskripsi"></textarea>
         </div>
         <div class="form-group mt-2 w-100 me-0">
             <label for="">Harga</label>
@@ -99,6 +99,94 @@
         <div class="form-group mt-2 w-100 me-0">
             <label for="">Merek</label>
             <input type="text" class="form-control mt-1 w-100" name="merk">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Kategori</label>
+            <select class="form-control mt-1 w-100" name="id_kategori"> 
+                <?php foreach ($kategori as $item) { ?>
+                    <option value="<?= $item->id_kategori ?>"><?= $item->nama_kategori ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Jenis Kelamin</label>
+            <select class="form-control mt-1 w-100" name="jenis_kelamin"> 
+                <option value="1">Laki-Laki</option>
+                <option value="2">Perempuan</option>
+                <option value="3">Umum</option>
+            </select>
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Bahan</label>
+            <input type="text" class="form-control mt-1 w-100" name="bahan">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Negara asal</label>
+            <input type="text" class="form-control mt-1 w-100" name="negara_asal">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Dikirim dari</label>
+            <input type="text" class="form-control mt-1 w-100" name="dikirim_dari">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Berat produk</label>
+            <input type="text" class="form-control mt-1 w-100" name="berat_produk">
+        </div>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="form-send" enctype="multipart/form-data" action="<?= base_url() . "admin/product/update" ?>" method="post"> 
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="bi bi-pencil me-2"></i> Edit Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <input type="hidden" name="id_produk">
+      <div class="modal-body">
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Nama Produk</label>
+            <input type="text" class="form-control mt-1 w-100" name="nama_produk">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Deskripsi</label>
+            <textarea type="text" rows="10" class="form-control mt-1 w-100" name="deskripsi"></textarea>
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Harga</label>
+            <input type="number" class="form-control mt-1 w-100" name="harga">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Stok</label>
+            <input type="number" class="form-control mt-1 w-100" name="stok">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Gambar</label>
+            <input type="file" class="form-control mt-1 w-100" name="gambar">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Tipe</label>
+            <input type="text" class="form-control mt-1 w-100" name="tipe">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Merek</label>
+            <input type="text" class="form-control mt-1 w-100" name="merk">
+        </div>
+        <div class="form-group mt-2 w-100 me-0">
+            <label for="">Kategori</label>
+            <select class="form-control mt-1 w-100" name="id_kategori"> 
+                <?php foreach ($kategori as $item) { ?>
+                    <option value="<?= $item->id_kategori ?>"><?= $item->nama_kategori ?></option>
+                <?php } ?>
+            </select>
         </div>
         <div class="form-group mt-2 w-100 me-0">
             <label for="">Jenis Kelamin</label>

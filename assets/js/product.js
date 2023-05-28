@@ -136,16 +136,17 @@ function form_send(){
 
         // remove error message
         $('small.text-danger').remove()
-        let form = {}; 
-        $(this).find('input, textarea, select').each(function() {
-            let name = $(this).attr('name');
-            let value = $(this).val();
-            form[name] = value; 
-        });
-        
+        let formEl = $(this);
+        let form = new FormData(formEl[0]);                         
+        form.append('file_gambar', $(this).find('[type="file"]')[0].files[0])        
+        if($(this).find('[type="file"]')[0].files[0]){
+            form.append('gambar', 'product_image');
+        }
         $.ajax({ 
             url: $(this).attr('action'),
+            processData: false,
             type : "post",
+            contentType : false,            
             data : form,
             success : function(data){
                 data = JSON.parse(data);
@@ -159,7 +160,13 @@ function form_send(){
                         title: 'Waduh :(',
                         text: `Ada ketinggalan!`,
                     })
-                }                
+                }  else if (data.success){
+                    window.location.reload();
+                }
+                
+            },
+            error: function(...arg){
+                console.error(arg);
             }
         })
 
@@ -188,3 +195,36 @@ function buttonDelete(){
     })
 }
 ready.push(buttonDelete);
+
+ready.push(function(){
+    $('.btn-edit-produk').on('click', function(){
+        
+        let formData = $(this).data('row');
+        // row => name 
+        let pairs = {
+            merek : 'merk',
+            type : 'tipe'
+        }        
+
+
+        Object.keys(formData).forEach(item => {
+            let field = item;
+            if(field == 'gambar_produk'){
+                let img = $(this).parents('tr').find('img');
+                let divContainner = document.createElement('div')
+                $(divContainner).append(img.clone()).addClass('my-2').addClass("image");                
+                let isImage = $('#edit-product').find('div.image');
+                if(isImage.length > 0){
+                    isImage.remove()
+                }
+                $('#edit-product').find(`[name="gambar"]`).before(divContainner);
+            }
+            if(pairs[item]){
+                field = pairs[item];
+            }
+            $('#edit-product').find(`[name="${field}"]`).val(formData[item]);
+        })
+
+        $('#edit-product').modal('show');
+    })
+})

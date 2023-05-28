@@ -29,21 +29,25 @@
             <thead>
               <tr>
                 <th class="text-center">No. </th>
-                <th width="350px">Name</th>
-                <th width="200px" align="center">Jabatan</th>                
+                <th width="150px">Name</th>
+                <th width="200px">Foto Profile</th>
+                <th width="300px" align="center">Jabatan</th>                
                 <th>Menu</th>
               </tr>
             </thead>
-            <?php foreach($founder as $no => $item){ ?>
+            <?php foreach ($founder as $no => $item) { ?>
                 <tbody> 
-                    <td class="first">
-                        <div class="text-secondary justify-content-center"> <?= $no+1 ?></div> 
-                    </td>
-                    <td><div><?= $item->user->username ?></div></td>                    
-                    <td><div><?= $item->jabatan ?></div></td>                    
-                    <td><div>                        
-                        <button class="btn btn-primary">edit</button>
-                    </div></td>
+                    <tr> 
+                        <td class="first">
+                            <div class="d-flex text-secondary justify-content-center"> <?= $no+1 ?></div> 
+                        </td>
+                        <td><div><?= $item->user->username ?></div></td>                    
+                        <td><div><img src="<?= base_url().'assets/img/'.$item->foto_profil ?>" width="100px" height="100px" style="object-fit: cover;"></div></td>                    
+                        <td><div><?= $item->jabatan ?></div></td>                    
+                        <td><div>                        
+                            <button data-row='<?= json_encode($item) ?>' class="btn-edit-admin btn btn-primary">edit</button>
+                        </div></td>
+                    </tr>
                 </tbody>
             <?php }?>
           </table>
@@ -54,67 +58,32 @@
 
 
   <!-- Modal -->
-<div class="modal fade" id="tambah-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form class="form-send" enctype="multipart/form-data" action="<?= base_url() . "admin/product/insert" ?>" method="post"> 
+    <form class="form-send" enctype="multipart/form-data" action="<?= base_url() . "admin/administrator/update" ?>" method="post"> 
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Product</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="bi bi-profile me-2"></i> Edit Admin</h1> 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <input type="hidden" name="id">
       <div class="modal-body">
         <div class="form-group mt-2 w-100 me-0">
-            <label for="">Nama Produk</label>
-            <input type="text" class="form-control mt-1 w-100" name="nama_produk">
-        </div>
+            <label for="">Nama Jabatann</label>
+            <input type="text" readonly class="form-control mt-1 w-100" name="jabatan">
+        </div>                
         <div class="form-group mt-2 w-100 me-0">
-            <label for="">Deskripsi</label>
-            <textarea type="text" class="form-control mt-1 w-100" name="deskripsi"></textarea>
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Harga</label>
-            <input type="number" class="form-control mt-1 w-100" name="harga">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Stok</label>
-            <input type="number" class="form-control mt-1 w-100" name="stok">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Gambar</label>
+            <label for="">Foto Profile</label>
             <input type="file" class="form-control mt-1 w-100" name="gambar">
-        </div>
+        </div>        
         <div class="form-group mt-2 w-100 me-0">
-            <label for="">Tipe</label>
-            <input type="text" class="form-control mt-1 w-100" name="tipe">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Merek</label>
-            <input type="text" class="form-control mt-1 w-100" name="merk">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Jenis Kelamin</label>
-            <select class="form-control mt-1 w-100" name="jenis_kelamin"> 
-                <option value="1">Laki-Laki</option>
-                <option value="2">Perempuan</option>
-                <option value="3">Umum</option>
+            <label for="">user</label>
+            <select class="form-control mt-1 w-100" name="id_user"> 
+              <?php foreach ($users as $user) { ?>
+                    <option value="<?= $user->id ?>"><?= $user->username ?></option>
+                <?php } ?>
             </select>
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Bahan</label>
-            <input type="text" class="form-control mt-1 w-100" name="bahan">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Negara asal</label>
-            <input type="text" class="form-control mt-1 w-100" name="negara_asal">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Dikirim dari</label>
-            <input type="text" class="form-control mt-1 w-100" name="dikirim_dari">
-        </div>
-        <div class="form-group mt-2 w-100 me-0">
-            <label for="">Berat produk</label>
-            <input type="text" class="form-control mt-1 w-100" name="berat_produk">
-        </div>
+        </div>        
       </div>
       </form>
       <div class="modal-footer">

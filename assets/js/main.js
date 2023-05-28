@@ -413,3 +413,37 @@ function renderGraph() {
 }
 
 ready.push(renderGraph);
+
+ready.push(function(){
+    $('.btn-edit-admin').on('click', function(){
+        
+        let formData = $(this).data('row');
+        
+        // row => name 
+        let pairs = {
+            merek : 'merk',
+            type : 'tipe'
+        }        
+
+
+        Object.keys(formData).forEach(item => {
+            let field = item;
+            if(field == 'foto_profil'){
+                let img = $(this).parents('tr').find('img');
+                let divContainner = document.createElement('div')                                
+                $(divContainner).append(img.clone()).addClass('my-2').addClass("image");                
+                let isImage = $('#edit-admin').find('div.image');
+                if(isImage.length > 0){
+                    isImage.remove()
+                }                
+                $('#edit-admin').find(`[name="gambar"]`).before(divContainner);
+            }
+            if(pairs[item]){
+                field = pairs[item];
+            }
+            $('#edit-admin').find(`[name="${field}"]`).val(formData[item]);
+        })
+
+        $('#edit-admin').modal('show');
+    })
+})
