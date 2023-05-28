@@ -36,13 +36,13 @@ class Order extends CI_Controller
 
       if (
         isset($filter['user']) && $filter['user'] !== '' && $filter['user'] !== $value->user->id
-        || isset($filter['start']) && strtotime($value->order_date) <  strtotime($filter['start'])
+        || isset($filter['start']) && $filter['start'] != '' && strtotime($value->order_date) <  strtotime($filter['start'])
       ) {
 
         unset($data['order'][$i]);
       }
 
-      if (isset($filter['end']) && strtotime($value->order_date) > strtotime($filter['end'])) {
+      if (isset($filter['end']) && $filter['end'] != '' && strtotime($value->order_date) > strtotime($filter['end'])) {
         unset($data['order'][$i]);
       }
     }
@@ -73,27 +73,27 @@ class Order extends CI_Controller
   function orders($order_column, $data)
   {
     $newData = [];
-    if ($order_column === ['product', 'up']) {
+    if ($order_column === ['product', 'down']) {
       usort($data, function ($a, $b) {
         return strcmp($b->product->nama_produk, $a->product->nama_produk);
       });
-    } else if ($order_column === ['product', 'down']) {
+    } else if ($order_column === ['product', 'up']) {
       usort($data, function ($a, $b) {
         return strcmp($a->product->nama_produk, $b->product->nama_produk);
       });
-    } else if ($order_column === ['qty', 'up']) {
+    } else if ($order_column === ['qty', 'down']) {
       usort($data, function ($a, $b) {
         return $b->qty > $a->qty;
       });
-    } else if ($order_column === ['qty', 'down']) {
+    } else if ($order_column === ['qty', 'up']) {
       usort($data, function ($a, $b) {
         return $a->qty > $b->qty;
       });
-    } else if ($order_column === ['price', 'up']) {
+    } else if ($order_column === ['price', 'down']) {
       usort($data, function ($a, $b) {
         return  $b->price > $a->price;
       });
-    } else if ($order_column === ['price', 'down']) {
+    } else if ($order_column === ['price', 'up']) {
       usort($data, function ($a, $b) {
         return $a->price > $b->price;
       });

@@ -39,8 +39,8 @@
         </li> -->
       </ul>
 
-      <form class="form-search justify-content-center form-grup" style="width: 400px;">
-        <div class='border-1 bg-secondary text-light rounded-pill px-2' style="width: 100%">
+      <form class="form-search form-grup" style="width: 400px;">
+        <div class='border-1 bg-secondary text-light d-flex justify-content-between rounded-pill px-2' style="width: 100%">
           <input class="search d-inline-block bg-secondary text-light border-0 shadow-none form-control rounded-pill" type="text" placeholder="cari pakaian disini" aria-label="Search" style="width: auto">
           <span class="material-symbols-outlined text-light fs-3 p-0 btn">search</span>
         </div>
@@ -58,6 +58,7 @@
               </svg> <span class="mr-2"><?= $this->session->userdata('username') ?></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="<?= base_url() ?>product/favorite/page">Favorit Saya</a></li>
               <li><a class="dropdown-item" href="<?= base_url() ?>user/logout">logout</a></li>
             </ul>
           </li>
@@ -69,53 +70,56 @@
       <a href="<?= base_url('user/message') ?>"><span class="material-symbols-outlined p-0 btn btn-lg fs-3 px-2">
           message
         </span></a>
+        
     </div>
   </div>
 </nav>
 
 
 <!-- Modal Contact Us -->
-<div class="modal fade" tabindex="-1" id="contact-us">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Kontak Kami</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-flex flex-column" style="width: 100%;">
-          <div class="row w-100">
-            <div class="form-group col" style="width: 100%;">
-              <label for="">Nama</label>
-              <input type="text" class="form-control w-100" placeholder="Nama">
+<form action="<?= base_url() . "KontakKami" ?>" class="form-send">
+  <div class="modal fade" tabindex="-1" id="contact-us">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Kontak Kami</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column" style="width: 100%;">
+            <div class="row w-100">
+              <div class="form-group col" style="width: 100%;">
+                <label for="">Nama</label>
+                <input type="text" name="name" class="form-control w-100" placeholder="Nama">
+              </div>
+              <div class="form-group col" style="width: 100%;">
+                <label for="">Email</label>
+                <input type="text" name="email" class="form-control w-100" placeholder="Masukan Email">
+              </div>
             </div>
-            <div class="form-group col" style="width: 100%;">
-              <label for="">Email</label>
-              <input type="text" class="form-control w-100" placeholder="Masukan Email">
+            <div class="row w-100 mt-2">
+              <div class="form-group col" style="width: 100%;">
+                <label for="">Nomor Telepon</label>
+                <input type="text" name="nomor_telepon" class="form-control w-100" placeholder="Masukan Nomor Telpon">
+              </div>
+              <div class="form-group col" style="width: 100%;">
+                <label for="">Subject</label>
+                <input type="text" name="subject" class="form-control w-100" placeholder="Masukan Subject">
+              </div>
             </div>
-          </div>
-          <div class="row w-100 mt-2">
-            <div class="form-group col" style="width: 100%;">
-              <label for="">Nomor Telepon</label>
-              <input type="text" class="form-control w-100" placeholder="Masukan Nomor Telpon">
-            </div>
-            <div class="form-group col" style="width: 100%;">
-              <label for="">Subject</label>
-              <input type="text" class="form-control w-100" placeholder="Masukan Subject">
-            </div>
-          </div>
-          <div class="mt-2">
-            <div class="form-group">
-              <label>Message</label>
-              <textarea rows="10" class="form-control" style="width: 100%;"></textarea>
+            <div class="mt-2">
+              <div class="form-group">
+                <label>Message</label>
+                <textarea rows="10" name="message" class="form-control" style="width: 100%;"></textarea>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary send-email">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+      </form>

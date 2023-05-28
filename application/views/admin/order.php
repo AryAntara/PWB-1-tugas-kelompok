@@ -39,14 +39,16 @@
             <?php
             $total_price = 0;
             $total_qty = 0;
+            $j = 0;
             foreach ($order as $i => $item) {
+              $j++;
               $total_price +=  $item->qty * $item->price;
               $total_qty += $item->qty;
             ?>
               <tbody>
                 <tr>
                   <td class="first">
-                    <div class="text-secondary justify-content-center"><?= $i + 1 ?></div>
+                    <div class="d-flex text-secondary justify-content-center"><?= $j ?></div>
                   </td>
                   <td>
                     <div><?= ucfirst($item->user->username) ?></div>

@@ -32,6 +32,11 @@
             <i class="bi bi-people me-2"></i> Admins
           </a>
         </li>
+        <li>
+          <a href="<?= base_url() . "/" ?>"  target="_blank" class="nav-link text-white">
+            <i class="bi bi-eye me-2"></i> Lihat Website
+          </a>
+        </li>
       </ul>
     </div>
   </div>

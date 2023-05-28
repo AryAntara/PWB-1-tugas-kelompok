@@ -5,6 +5,13 @@
  * Class of same function that used in defferent controller
  * @license MIT
  */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// load composer here
+require __DIR__ . '/../../vendor/autoload.php';
+
 class Tool
 {
     // ci setup library 
@@ -103,5 +110,37 @@ class Tool
             }
         }
         return $found;
+    }
+
+    /**
+     * Send Email 
+     */
+    function send_email($email_to, $username, $title, $message){
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'xinjiangcrosin@gmail.com';                     //SMTP username
+            $mail->Password   = 'rkzvtougtrsuzmrm';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('xinjiangcrosin@gmail.com', 'Teamp4t Ecommerce');
+            $mail->addAddress($email_to, $username);     //Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $title;
+            $mail->Body    = $message;
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 }

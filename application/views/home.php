@@ -9,12 +9,12 @@
 </div>
 
 <!-- Search -->
-<form class="mb-5 search-home d-flex justify-content-center form-grup" style="width: 100%">
+<!-- <form class="mb-5 search-home d-flex justify-content-center form-grup" style="width: 100%">
   <div class='mb-5 border-1 bg-secondary text-light rounded-pill px-2' style="width: auto"> 
     <span class="material-symbols-outlined text-light fs-3 p-0 btn">search</span>
     <input class="search d-inline-block bg-secondary text-light border-0 shadow-none form-control rounded-pill" type="text" placeholder="cari pakaian disini" aria-label="Search">
   </div>
-</form>
+</form> -->
 
 <!-- Slider -->
 <div id="carouselExampleCaptions" class="carousel slide position-fixed top-0" data-bs-ride="carousel" style="z-index: -1;width: 100%">

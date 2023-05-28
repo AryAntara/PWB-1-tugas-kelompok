@@ -32,8 +32,8 @@
             <thead>
               <tr>
                 <th class="text-center">No. </th>
-                <th width="350px">Name</th>
-                <th width="200px" align="center">Gambar</th>
+                <th width="200px">Name</th>
+                <th width="100px" align="center">Gambar</th>
                 <th>Stok</th>
                 <th>harga</th>
                 <th>Menu</th>

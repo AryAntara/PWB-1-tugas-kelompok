@@ -14,6 +14,8 @@ class Favorite extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('M_user');
+    $this->load->model('M_product');
+    $this->load->library('template');
   }
   
   /**
@@ -60,4 +62,15 @@ class Favorite extends CI_Controller {
     echo json_encode(['status' => 'success','msg' => 'success remove from favorite','code' => '202']);
   }
 
+  function page(){
+    $products = $this->M_product->get_product();
+    $data['products'] = []; 
+    $data['likes_product'] = json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) ? json_decode($this->M_user->get_user($this->session->userdata('email'))->favorit) : [];
+    foreach ($products as $product) {
+        if (in_array($product->id_produk, $data['likes_product'])) {
+            $data['products'][] = $product;
+        }
+    }
+    echo $this->template->display('favorite', $data);
+  }
 }

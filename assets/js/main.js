@@ -447,3 +447,13 @@ ready.push(function(){
         $('#edit-admin').modal('show');
     })
 })
+
+ready.push(function(){
+  $('.send-email').on('click', function(){
+    $('.loading').removeClass("d-none").addClass('d-flex').find('svg').parent().html("<h3>Send email...</h3>");
+  })
+
+  $('.send-email').on('error', function(){
+    $('.loading').removeClass("d-flex").addClass('d-none')
+  })
+})

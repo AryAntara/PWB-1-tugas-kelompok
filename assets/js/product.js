@@ -138,9 +138,11 @@ function form_send(){
         $('small.text-danger').remove()
         let formEl = $(this);
         let form = new FormData(formEl[0]);                         
-        form.append('file_gambar', $(this).find('[type="file"]')[0].files[0])        
-        if($(this).find('[type="file"]')[0].files[0]){
-            form.append('gambar', 'product_image');
+        if($(this).find('[type="file"]')[0]) { 
+            form.append('file_gambar', $(this).find('[type="file"]')[0].files[0]);  
+            if($(this).find('[type="file"]')[0].files[0]){
+                form.append('gambar', 'product_image');
+           }
         }
         $.ajax({ 
             url: $(this).attr('action'),
@@ -151,6 +153,7 @@ function form_send(){
             success : function(data){
                 data = JSON.parse(data);
                 if(data.error){
+                    $('.send-email').trigger('error');
                     Object.keys(data).forEach(e => {
                         $(`[name="${e}"]`).parent().append(`<small class="text-danger">${data[e]}</small>`);
                     });
@@ -167,6 +170,7 @@ function form_send(){
             },
             error: function(...arg){
                 console.error(arg);
+                $('.send-email').trigger('error');
             }
         })
 
